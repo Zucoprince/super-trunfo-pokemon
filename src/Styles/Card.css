@@ -140,6 +140,15 @@
   flex-direction: column;
 }
 
+.stats_name {
+  font-family: 'Pokemon Solid', sans-serif;
+  letter-spacing: 3px;
+}
+
+.stats_value {
+  font-family: 'Johnny Torch', sans-serif;
+}
+
 .container_conteudo_carta_direito {
   display: flex;
   gap: 5px;
