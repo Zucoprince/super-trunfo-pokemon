@@ -29,8 +29,11 @@ export default function GetPokemon() {
   const getRandomPokemon = async () => {
     if (pokemonList.length > 0) {
       try {
+        let filteredPokemonList = pokemonList.filter(
+          (pokemon) => !pokemon.name.includes("-drive-", "-sprining-", "-totem", "-drive", "-sprining")
+        );
         const randomIndex = Math.floor(Math.random() * pokemonList.length);
-        const selectedPokemon = pokemonList[randomIndex];
+        const selectedPokemon = filteredPokemonList[randomIndex];
         const response = await api.get(selectedPokemon.url); // Fazendo uma solicitação para obter todos os dados do Pokémon
         setRandomPokemon(response.data);
       } catch (error) {

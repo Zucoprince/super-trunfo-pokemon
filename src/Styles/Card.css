@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Gabarito&display=swap");
+@import url("https://fonts.cdnfonts.com/css/pokemon-hollow");
+@import url("https://fonts.cdnfonts.com/css/bionic-comic");
+@import url("https://fonts.cdnfonts.com/css/adventure-subtitles-2");
 
 .container_carta {
   display: flex;
@@ -18,35 +21,89 @@
   align-items: center;
   flex-direction: column;
   background-color: blueviolet;
-  width: 27%;
-  height: 80%;
+  width: 24%;
+  height: 90%;
+  border-radius: 30px;
+  border: 20px solid rgb(27, 27, 27);
+  box-shadow: 14px 14px 30px 10px black;
 }
 
 .topo_carta {
   font-family: "Gabarito", sans-serif;
   font-size: 1.6vw;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   height: 5%;
-  background-color: blue;
 }
 
 .nome_pokemon {
+  font-family: "Adventure Subtitles", sans-serif;
   padding-left: 40px;
+  text-transform: capitalize;
+  padding-top: 10px;
 }
 
-.raridade {
-  padding-right: 40px;
+.bloco_raridade {
+  position: relative;
+}
+
+.container_raridade {
+  display: flex;
+  position: absolute;
+  transform: translate(-63%, -100%);
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 20px;
+  background-color: green;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.COMUM {
+  background-color: rgb(0, 202, 0);
+}
+
+.INCOMUM {
+  background-color: rgb(0, 0, 165);
+}
+
+.RARO {
+  background-color: rgb(116, 0, 194);
+}
+
+.MUITO-RARO {
+  background-color: rgb(255, 145, 0);
+  color: aliceblue;
+}
+
+.ULTRA-RARO {
+  background-color: red;
+}
+
+.LENDÁRIO {
+  background-color: yellow;
+}
+
+.MÍTICO {
+  background-color: gold;
+}
+
+.DIVINO {
+  background-color: white;
 }
 
 .container_imagem_carta {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 90%;
   height: 55%;
   background-color: brown;
   overflow: hidden;
@@ -62,29 +119,70 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 100%;
+  width: 96%;
   height: 35%;
-  background-color: rgb(255, 255, 3);
+  background-color: antiquewhite;
+  border: 2px solid black;
+  border-radius: 40px;
 }
 
 .rodape_carta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 5%;
-  background-color: blue;
 }
 
 .container_conteudo_carta_esquerdo {
   display: flex;
-  gap: 30px;
+  gap: 5px;
   flex-direction: column;
 }
 
 .container_conteudo_carta_direito {
   display: flex;
-  gap: 30px;
+  gap: 5px;
   flex-direction: column;
 }
 
 .status {
-  font-size: 1.4vw;
+  font-size: 1.2vw;
+}
+
+.status_total {
+  display: flex;
+  background-color: antiquewhite;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
+  border: 2px solid;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.tipagem {
+  text-transform: capitalize;
+  font-family: "Bionic Comic", sans-serif;
+  display: flex;
+  background-color: antiquewhite;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
+  border: 2px solid;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+.stats_name {
+  font-family: "Pokemon Solid", sans-serif;
+  letter-spacing: 2px;
+}
+
+.stats_values {
+  font-family: "Bionic Comic", sans-serif;
 }
