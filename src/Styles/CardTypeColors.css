@@ -10,7 +10,7 @@
   .bug_dragon {
     background: linear-gradient(to right, rgb(158, 255, 103), rgb(69, 212, 255));
   }
-  .bug_eletric {
+  .bug_electric {
     background: linear-gradient(to right, rgb(158, 255, 103), rgb(208, 255, 0));
   }
   .bug_fairy {
@@ -65,7 +65,7 @@
   .dark_dragon {
     background: linear-gradient(to right, rgb(58, 58, 58), rgb(69, 212, 255));
   }
-  .dark_eletric {
+  .dark_electric {
     background: linear-gradient(to right, rgb(58, 58, 58), rgb(208, 255, 0));
   }
   .dark_fairy {
@@ -120,7 +120,7 @@
   .dragon_dark {
     background: linear-gradient(to right, rgb(69, 212, 255), rgb(58, 58, 58));
   }
-  .dragon_eletric {
+  .dragon_electric {
     background: linear-gradient(to right, rgb(69, 212, 255), rgb(208, 255, 0));
   }
   .dragon_fairy {
@@ -163,58 +163,58 @@
     background: linear-gradient(to right, rgb(69, 212, 255), rgb(9, 54, 255));
   }
   
-  .eletric_ {
+  .electric_ {
     background-color: rgb(208, 255, 0);
   }
-  .eletric_grass {
+  .electric_grass {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(74, 202, 0));
   }
-  .eletric_bug {
+  .electric_bug {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(158, 255, 103));
   }
-  .eletric_dark {
+  .electric_dark {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(58, 58, 58));
   }
-  .eletric_dragon {
+  .electric_dragon {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(69, 212, 255));
   }
-  .eletric_fairy {
+  .electric_fairy {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(255, 0, 179));
   }
-  .eletric_fighting {
+  .electric_fighting {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(255, 153, 0));
   }
-  .eletric_fire {
+  .electric_fire {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(255, 0, 0));
   }
-  .eletric_flying {
+  .electric_flying {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(171, 205, 255));
   }
-  .eletric_ghost {
+  .electric_ghost {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(73, 31, 139));
   }
-  .eletric_ground {
+  .electric_ground {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(122, 60, 31));
   }
-  .eletric_ice {
+  .electric_ice {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(22, 239, 255));
   }
-  .eletric_normal {
+  .electric_normal {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(255, 201, 169));
   }
-  .eletric_poison {
+  .electric_poison {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(169, 65, 255));
   }
-  .eletric_psychic {
+  .electric_psychic {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(255, 0, 212));
   }
-  .eletric_rock {
+  .electric_rock {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(73, 29, 11));
   }
-  .eletric_steel {
+  .electric_steel {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(167, 167, 167));
   }
-  .eletric_water {
+  .electric_water {
     background: linear-gradient(to right, rgb(208, 255, 0), rgb(9, 54, 255));
   }
   
@@ -233,7 +233,7 @@
   .fairy_dragon {
     background: linear-gradient(to right, rgb(255, 0, 179), rgb(69, 212, 255));
   }
-  .fairy_eletric {
+  .fairy_electric {
     background: linear-gradient(to right, rgb(255, 0, 179), rgb(208, 255, 0));
   }
   .fairy_fighting {
@@ -288,7 +288,7 @@
   .fighting_dragon {
     background: linear-gradient(to right, rgb(255, 153, 0), rgb(69, 212, 255));
   }
-  .fighting_eletric {
+  .fighting_electric {
     background: linear-gradient(to right, rgb(255, 153, 0), rgb(208, 255, 0));
   }
   .fighting_fairy {
@@ -343,7 +343,7 @@
   .fire_dragon {
     background: linear-gradient(to right, rgb(255, 0, 0), rgb(69, 212, 255));
   }
-  .fire_eletric {
+  .fire_electric {
     background: linear-gradient(to right, rgb(255, 0, 0), rgb(208, 255, 0));
   }
   .fire_fairy {
@@ -398,7 +398,7 @@
   .flying_dragon {
     background: linear-gradient(to right, rgb(171, 205, 255), rgb(69, 212, 255));
   }
-  .flying_eletric {
+  .flying_electric {
     background: linear-gradient(to right, rgb(171, 205, 255), rgb(208, 255, 0));
   }
   .flying_fairy {
@@ -453,7 +453,7 @@
   .ghost_dragon {
     background: linear-gradient(to right, rgb(73, 31, 139), rgb(69, 212, 255));
   }
-  .ghost_eletric {
+  .ghost_electric {
     background: linear-gradient(to right, rgb(73, 31, 139), rgb(208, 255, 0));
   }
   .ghost_fairy {
@@ -508,7 +508,7 @@
   .grass_dragon {
     background: linear-gradient(to right, rgb(74, 202, 0), rgb(69, 212, 255));
   }
-  .grass_eletric {
+  .grass_electric {
     background: linear-gradient(to right, rgb(74, 202, 0), rgb(208, 255, 0));
   }
   .grass_fairy {
@@ -563,7 +563,7 @@
   .ice_dragon {
     background: linear-gradient(to right, rgb(22, 239, 255), rgb(69, 212, 255));
   }
-  .ice_eletric {
+  .ice_electric {
     background: linear-gradient(to right, rgb(22, 239, 255), rgb(208, 255, 0));
   }
   .ice_fairy {
@@ -618,7 +618,7 @@
   .ground_dragon {
     background: linear-gradient(to right, rgb(122, 60, 31), rgb(69, 212, 255));
   }
-  .ground_eletric {
+  .ground_electric {
     background: linear-gradient(to right, rgb(122, 60, 31), rgb(208, 255, 0));
   }
   .ground_fairy {
@@ -673,7 +673,7 @@
   .normal_dragon {
     background: linear-gradient(to right, rgb(255, 201, 169), rgb(69, 212, 255));
   }
-  .normal_eletric {
+  .normal_electric {
     background: linear-gradient(to right, rgb(255, 201, 169), rgb(208, 255, 0));
   }
   .normal_fairy {
@@ -728,7 +728,7 @@
   .poison_dragon {
     background: linear-gradient(to right, rgb(169, 65, 255), rgb(69, 212, 255));
   }
-  .poison_eletric {
+  .poison_electric {
     background: linear-gradient(to right, rgb(169, 65, 255), rgb(208, 255, 0));
   }
   .poison_fairy {
@@ -784,7 +784,7 @@
   .psychic_dragon {
     background: linear-gradient(to right, rgb(255, 0, 212), rgb(69, 212, 255));
   }
-  .psychic_eletric {
+  .psychic_electric {
     background: linear-gradient(to right, rgb(255, 0, 212), rgb(208, 255, 0));
   }
   .psychic_fairy {
@@ -840,7 +840,7 @@
   .rock_dragon {
     background: linear-gradient(to right, rgb(73, 29, 11), rgb(69, 212, 255));
   }
-  .rock_eletric {
+  .rock_electric {
     background: linear-gradient(to right, rgb(73, 29, 11), rgb(208, 255, 0));
   }
   .rock_fairy {
@@ -896,7 +896,7 @@
   .steel_dragon {
     background: linear-gradient(to right, rgb(167, 167, 167), rgb(69, 212, 255));
   }
-  .steel_eletric {
+  .steel_electric {
     background: linear-gradient(to right, rgb(167, 167, 167), rgb(208, 255, 0));
   }
   .steel_fairy {
@@ -952,7 +952,7 @@
   .water_dragon {
     background: linear-gradient(to right, rgb(9, 54, 255), rgb(69, 212, 255));
   }
-  .water_eletric {
+  .water_electric {
     background: linear-gradient(to right, rgb(9, 54, 255), rgb(208, 255, 0));
   }
   .water_fairy {

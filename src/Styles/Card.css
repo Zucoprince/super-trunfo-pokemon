@@ -11,41 +11,137 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  height: 80vh;
-  width: 100vw;
-  background-color: aqua;
 }
 
 .carta {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: blueviolet;
-  width: 24%;
-  height: 90%;
+  width: 24vw;
+  height: 35vw;
   border-radius: 30px;
-  border: 20px solid rgb(27, 27, 27);
+  border: 0.8vw solid rgb(27, 27, 27);
   box-shadow: 14px 14px 30px 10px black;
+}
+.water_carta {
+  background-image: url("../../public/water_card.jpg");
+  background-size: 220%;
+  border-color: rgb(208, 255, 0);
+  border-color: rgb(9, 54, 255);
+}
+.bug_carta {
+  background-image: url("../../public/bug_card.jpg");
+  background-size: 300%;
+  border-color: rgb(158, 255, 103);
+}
+.dark_carta {
+  background-image: url("../../public/dark_card.jpg");
+  background-size: 150%;
+}
+.dragon_carta {
+  background-image: url("../../public/dragon_card.jpg");
+  background-size: 260%;
+  border-color: rgb(69, 212, 255);
+}
+.electric_carta {
+  background-image: url("../../public/electric_card.jpg");
+  background-size: 200%;
+  background-position: center;
+  border-color: rgb(208, 255, 0);
+}
+.fairy_carta {
+  background-image: url("../../public/fairy_card.jpg");
+  background-size: 300%;
+  border-color: rgb(255, 0, 179);
+}
+.fighting_carta {
+  background-image: url("../../public/fighting_card.jpeg");
+  background-size: 150%;
+  border-color: rgb(255, 153, 0);
+  background-position: top;
+}
+.fire_carta {
+  background-image: url("../../public/fire_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(255, 0, 0);
+}
+.flying_carta {
+  background-image: url("../../public/flying_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(171, 205, 255);
+}
+.ghost_carta {
+  background-image: url("../../public/ghost_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(73, 31, 139);
+}
+.grass_carta {
+  background-image: url("../../public/grass_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(74, 202, 0);
+}
+.ground_carta {
+  background-image: url("../../public/ground_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(122, 60, 31);
+}
+.ice_carta {
+  background-image: url("../../public/ice_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(22, 239, 255);
+}
+.normal_carta {
+  background-image: url("../../public/normal_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(191, 191, 191);
+}
+.poison_carta {
+  background-image: url("../../public/poison_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(169, 65, 255);
+}
+.psychic_carta {
+  background-image: url("../../public/psychic_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(255, 0, 212);
+}
+.rock_carta {
+  background-image: url("../../public/rock_card.jpeg");
+  background-size: 100%;
+  border-color: rgb(73, 29, 11);
+}
+.steel_carta {
+  background-image: url("../../public/steel_card.jpeg");
+  background-size: 200%;
+  border-color: rgb(167, 167, 167);
 }
 
 .topo_carta {
   font-family: "Gabarito", sans-serif;
-  font-size: 1.6vw;
+  font-size: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 106%;
   height: 5%;
 }
 
 .nome_pokemon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: "Adventure Subtitles", sans-serif;
-  padding-left: 40px;
   text-transform: capitalize;
-  padding-top: 10px;
+  background-color: rgba(235, 235, 235, 0.937);
+  margin-left: 7%;
+  padding-left: 6%;
+  padding-right: 6%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border-radius: 20%;
 }
 
 .bloco_raridade {
@@ -61,7 +157,7 @@
   padding-right: 10px;
   padding-left: 10px;
   border-radius: 20px;
-  background-color: green;
+  background-color: rgb(0, 0, 0);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -105,9 +201,9 @@
   justify-content: center;
   width: 90%;
   height: 55%;
-  background-color: brown;
+  background-color: rgba(165, 42, 42, 0);
   overflow: hidden;
-  border: 8px solid rgb(184, 184, 184);
+  border: 8px solid rgb(0, 0, 0);
   border-radius: 20px;
 }
 
@@ -121,7 +217,7 @@
   justify-content: space-around;
   width: 96%;
   height: 35%;
-  background-color: antiquewhite;
+  background-color: rgba(235, 235, 235, 0.937);
   border: 2px solid black;
   border-radius: 40px;
 }
@@ -141,12 +237,12 @@
 }
 
 .stats_name {
-  font-family: 'Pokemon Solid', sans-serif;
+  font-family: "Pokemon Solid", sans-serif;
   letter-spacing: 3px;
 }
 
 .stats_value {
-  font-family: 'Johnny Torch', sans-serif;
+  font-family: "Johnny Torch", sans-serif;
 }
 
 .container_conteudo_carta_direito {
@@ -156,20 +252,19 @@
 }
 
 .status {
-  font-size: 1.2vw;
+  font-size: 100%;
 }
 
 .status_total {
   display: flex;
-  background-color: antiquewhite;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  background-color: rgb(0, 0, 0);
+  color: aliceblue;
+  padding: 2%;
   border-radius: 10px;
   border: 2px solid;
-  margin-bottom: 10px;
-  margin-left: 20px;
+  margin-bottom: 3%;
+  margin-left: 7%;
+  font-size: 80%;
 }
 
 .tipagem {
@@ -177,14 +272,12 @@
   font-family: "Bionic Comic", sans-serif;
   display: flex;
   background-color: antiquewhite;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 2%;
   border-radius: 10px;
   border: 2px solid;
-  margin-bottom: 10px;
-  margin-right: 20px;
+  margin-bottom: 3%;
+  margin-right: 7%;
+  font-size: 90%;
 }
 
 .stats_name {
@@ -194,4 +287,18 @@
 
 .stats_values {
   font-family: "Bionic Comic", sans-serif;
+}
+
+@media only screen and (max-width: 1024px) {
+  .carta {
+    width: 40vw;
+    height: 58vw;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .carta {
+    width: 70vw;
+    height: 110vw;
+  }
 }

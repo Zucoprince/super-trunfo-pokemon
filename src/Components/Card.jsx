@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "../Styles/Card.css";
 import "../Styles/CardTypeColors.css";
 import { getStats, soma } from "./GetStats";
-import api from "../services/api";
 
 export default function Card(props) {
   const [firstType, setFirstType] = useState("");
@@ -19,7 +18,6 @@ export default function Card(props) {
     187, 188, 190, 191, 201, 210, 384, 385, 492, 648, 721, 722, 723, 724, 725,
     726, 727, 728, 809, 809, 890, 890,
   ];
-  // const [pokemonSpecies, setPokemonSpecies] = useState([]);
 
   useEffect(() => {
     if (props.randomPokemon.types.length === 1) {
@@ -31,21 +29,6 @@ export default function Card(props) {
       setSecondType(props.randomPokemon.types[1].type.name);
     }
   }, [props.randomPokemon.types]);
-
-  // useEffect(() => {
-  //   const fetchAdditionalData = async () => {
-  //     try {
-  //       const response = await api.get(
-  //         `pokemon-species/${props.randomPokemon.id}`
-  //       );
-  //       setPokemonSpecies(response.data);
-  //     } catch (error) {
-  //       console.error("Erro ao buscar dados adicionais do Pokémon:", error);
-  //     }
-  //   };
-
-  //   fetchAdditionalData();
-  // }, [props.randomPokemon]);
 
   const tipagem =
     secondType !== "" && secondType !== null ? (
@@ -101,115 +84,62 @@ export default function Card(props) {
     }
   };
 
-  // console.log(pokemonSpecies);
-
-  // const classificarRaridade = (pokemonSpecies) => {
-  //   const captureRate = pokemonSpecies?.capture_rate;
-
-  //   if (
-  //     captureRate >= 200 &&
-  //     captureRate <= 255
-  //   ) {
-  //     return "COMUM";
-  //   } else if (
-  //     captureRate >= 150 &&
-  //     captureRate < 200
-  //   ) {
-  //     return "COMUM";
-  //   } else if (
-  //     captureRate >= 100 &&
-  //     captureRate < 150
-  //   ) {
-  //     return "RARO";
-  //   } else if (
-  //     captureRate >= 50 &&
-  //     captureRate < 100
-  //   ) {
-  //     return "RARO";
-  //   } else if (
-  //     captureRate >= 25 &&
-  //     captureRate < 50
-  //   ) {
-  //     return "ULTRA-RARO";
-  //   } else if (
-  //     captureRate >= 10 &&
-  //     captureRate < 25
-  //   ) {
-  //     return "LENDÁRIO";
-  //   } else if (
-  //     captureRate >= 5 &&
-  //     captureRate < 10
-  //   ) {
-  //     return "MÍTICO";
-  //   } else if (
-  //     captureRate >= 3 &&
-  //     captureRate < 5
-  //   ) {
-  //     return "DIVINO";
-  //   } else if (
-  //     captureRate === null ||
-  //     captureRate === ""
-  //   ) {
-  //     return "DESCONHECIDO";
-  //   } else {
-  //     return "Desconhecido";
-  //   }
-  // };
-
   return (
     <>
-      <div className="container_carta">
-        <div className="carta">
-          <div className="topo_carta">
-            <div className="nome_pokemon">
-              {props.randomPokemon.name.replace(/-/g, " ")}
-            </div>
-            <div className="bloco_raridade">
-              <div
-                className={`container_raridade ${classificarRaridade(
-                  somaStats
-                )}`}
-              >
-                <div className="raridade">
-                  {classificarRaridade(
-                    somaStats,
-                    props.randomPokemon.id
-                  ).replace(/-/g, " ")}
+        <div className="container_carta">
+          <div className={`carta ${firstType}_carta`}>
+            <div className="topo_carta">
+              <div className="nome_pokemon">
+                <span>{props.randomPokemon.name.replace(/-/g, " ")}</span>
+              </div>
+              <div className="bloco_raridade">
+                <div
+                  className={`container_raridade ${classificarRaridade(
+                    somaStats
+                  )}`}
+                >
+                  <div className="raridade">
+                    {classificarRaridade(
+                      somaStats,
+                      props.randomPokemon.id
+                    ).replace(/-/g, " ")}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="container_imagem_carta">
-            <img
-              src={imagem}
-              className="imagem_carta"
-              alt="imagem do Pikachu"
-            ></img>
-          </div>
-          <div className="conteudo_carta">
-            <div className="container_conteudo_carta_esquerdo">
-              {firstStats.map((stat, index) => (
-                <div key={index} className="status">
-                  <span className="stats_name">{stat.statsName}</span>:{" "}
-                  <span className="stats_values">{stat.statsValues}</span>
-                </div>
-              ))}
+            <div className="container_imagem_carta">
+              <img
+                src={imagem}
+                className="imagem_carta"
+                alt={`imagem do ${props.randomPokemon.name}`}
+              ></img>
             </div>
-            <div className="container_conteudo_carta_direito">
-              {secondStats.map((stat, index) => (
-                <div key={index} className="status">
-                  <span className="stats_name">{stat.statsName}</span>:{" "}
-                  <span className="stats_values">{stat.statsValues}</span>
-                </div>
-              ))}
+            <div className="conteudo_carta">
+              <div className="container_conteudo_carta_esquerdo">
+                {firstStats.map((stat, index) => (
+                  <div key={index} className="status">
+                    <span className="stats_name">{stat.statsName}</span>:{" "}
+                    <span className="stats_values">{stat.statsValues}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="container_conteudo_carta_direito">
+                {secondStats.map((stat, index) => (
+                  <div key={index} className="status">
+                    <span className="stats_name">{stat.statsName}</span>:{" "}
+                    <span className="stats_values">{stat.statsValues}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className="rodape_carta">
-            <div className="status_total">POWER MAX: {somaStats}</div>
-            <div className={`tipagem ${firstType}_${secondType}`}>{tipagem}</div>
+            <div className="rodape_carta">
+              <div className="status_total">POWER MAX: {somaStats}</div>
+              <div className={`tipagem ${firstType}_${secondType}`}>
+                {tipagem}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     </>
   );
 }
