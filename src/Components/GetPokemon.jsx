@@ -49,11 +49,16 @@ export default function GetPokemon() {
         </div>
       ) : (
         <div>
+<<<<<<< HEAD
           <button
             onClick={handleRandomPokemonClick}
             className="button_randomizer"
           >
             <span className="texto_botao">Eu escolho você!</span>
+=======
+          <button onClick={getRandomPokemon} className="button_randomizer">
+            <span>Eu escolho você!</span>
+>>>>>>> 86c9c6d (Processo de criação da parte traseira da carta)
           </button>
           {randomPokemon && imageLoaded && (
             <Card
