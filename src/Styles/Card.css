@@ -22,7 +22,15 @@
   border-radius: 30px;
   border: 0.8vw solid rgb(27, 27, 27);
   box-shadow: 14px 14px 30px 10px black;
+  cursor: pointer;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
 }
+
+.carta:hover {
+  transform: scale(1.03);
+}
+
 .water_carta {
   background-image: url("../../public/water_card.jpg");
   background-size: 220%;
@@ -278,11 +286,6 @@
   margin-bottom: 3%;
   margin-right: 7%;
   font-size: 90%;
-}
-
-.stats_name {
-  font-family: "Pokemon Solid", sans-serif;
-  letter-spacing: 2px;
 }
 
 .stats_values {

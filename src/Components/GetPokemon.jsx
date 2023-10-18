@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import api from "../services/api";
+import { api } from "../services/api";
 import ClipLoader from "react-spinners/ClipLoader";
 import "../Styles/GetPokemon.css"
 
@@ -80,7 +80,7 @@ export default function GetPokemon() {
       ) : (
         <div>
           <button onClick={getRandomPokemon} className="button_randomizer">
-            Eu escolho você!
+            <span>Eu escolho você!</span>
           </button>
           {randomPokemon && <Card randomPokemon={randomPokemon} />}
         </div>

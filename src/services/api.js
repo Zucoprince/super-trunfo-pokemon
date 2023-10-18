@@ -4,4 +4,8 @@ const api = axios.create({
   baseURL: "https://pokeapi.co/api/v2/",
 });
 
-export default api;
+const apiSpecies = axios.create({
+  baseURL: "https://pokeapi.co/api/v2/pokemon-species/",
+});
+
+export { api, apiSpecies };
