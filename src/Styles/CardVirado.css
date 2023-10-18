@@ -1,0 +1,78 @@
+.container_conteudo_virado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ddddde;
+  position: absolute;
+  top: 2.6%;
+  left: 5%;
+  width: 90%;
+  height: 95%;
+  align-self: center;
+  justify-self: center;
+}
+
+.container_imagens_virado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: brown;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.container_descrição_virado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.container_fraquezas_virado {
+  background-color: chartreuse;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.container_arvore_evolutiva_virado {
+  background-color: darkgoldenrod;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.container_imagem_esquerda_virado,
+.container_imagem_direita_virado {
+  display: flex;
+  text-align: center;
+  text-justify: center;
+  width: 50%;
+  height: 60%;
+  border: 1px solid black;
+  overflow: hidden;
+  background-color: aliceblue;
+}
+
+.container_imagem_esquerda_virado {
+  margin-left: 30px;
+}
+
+.container_imagem_direita_virado {
+  margin-right: 30px;
+}
+
+.imagem_esquerda_virado,
+.imagem_direita_virado {
+  width: 100%;
+}
+
+.moldura_descrição_virado {
+    border: 3px solid black;
+    width: 80%;
+    margin-top: -40px;
+    padding: 20px;
+    background-color: aliceblue;
+}

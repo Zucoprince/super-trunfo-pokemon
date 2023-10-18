@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import "../Styles/Card.css";
 import "../Styles/CardTypeColors.css";
+import "../Styles/CardVirado.css";
 import { getStats, soma } from "./GetStats";
+import { apiSpecies } from "../services/api";
+import SearchTypeUrl from "./SearchTypeUrl";
+import GetTypeAverage from "./GetTypeAverage";
 
 export default function Card(props) {
   const [firstType, setFirstType] = useState("");
@@ -18,6 +22,56 @@ export default function Card(props) {
     187, 188, 190, 191, 201, 210, 384, 385, 492, 648, 721, 722, 723, 724, 725,
     726, 727, 728, 809, 809, 890, 890,
   ];
+  const [virada, setVirada] = useState(false);
+  const [pokemonSpecies, setPokemonSpecies] = useState([]);
+  const [maxIndex, setMaxIndex] = useState(0);
+  const [description, setDescription] = useState("");
+  const { contentUm, contentDois } = SearchTypeUrl(props);
+  const [urlTypeUm, setUrlTypeUm] = useState("");
+  const [urlTypeDois, setUrlTypeDois] = useState("");
+
+  const virarCarta = () => {
+    setVirada(!virada);
+  };
+
+  useEffect(() => {
+    setUrlTypeUm(contentUm);
+    setUrlTypeDois(contentDois);
+  }, [contentUm, contentDois]);
+
+  console.log(pokemonSpecies, props.randomPokemon);
+
+  useEffect(() => {
+    const fetchPokemonSpecies = async () => {
+      try {
+        const response = await apiSpecies.get(`${props.randomPokemon.id}`);
+        setPokemonSpecies(response.data);
+      } catch (error) {
+        console.error("Oops! Ocorreu um erro: " + error);
+      }
+    };
+    fetchPokemonSpecies();
+  }, [props.randomPokemon.id]);
+
+  useEffect(() => {
+    if (pokemonSpecies && pokemonSpecies.flavor_text_entries) {
+      const flavorTextEntries = pokemonSpecies.flavor_text_entries;
+      if (flavorTextEntries.length > 0) {
+        flavorTextEntries.forEach((entry, index) => {
+          if (
+            entry.flavor_text &&
+            index > maxIndex &&
+            pokemonSpecies.flavor_text_entries[index].language.name === "en"
+          ) {
+            setMaxIndex(index);
+            setDescription(
+              `${pokemonSpecies.flavor_text_entries[index].flavor_text}`
+            );
+          }
+        });
+      }
+    }
+  }, [pokemonSpecies, maxIndex]);
 
   useEffect(() => {
     if (props.randomPokemon.types.length === 1) {
@@ -64,7 +118,6 @@ export default function Card(props) {
       if (idsRaros.includes(id)) {
         return "ULTRA-RARO-";
       }
-      console.log("PEGUEI VOCE!");
       return "ULTRA-RARO";
     } else if (somaStats <= 600) {
       if (idsRaros.includes(id)) {
@@ -86,8 +139,9 @@ export default function Card(props) {
 
   return (
     <>
-        <div className="container_carta">
-          <div className={`carta ${firstType}_carta`}>
+      <div className="container_carta">
+        {!virada && (
+          <div className={`carta ${firstType}_carta `} onClick={virarCarta}>
             <div className="topo_carta">
               <div className="nome_pokemon">
                 <span>{props.randomPokemon.name.replace(/-/g, " ")}</span>
@@ -139,7 +193,52 @@ export default function Card(props) {
               </div>
             </div>
           </div>
-        </div>
+        )}
+        {virada && (
+          <div className="container_carta">
+            <div className={`carta ${firstType}_carta `} onClick={virarCarta}>
+              <div className="container_conteudo_virado">
+                <div className="container_imagens_virado">
+                  <div className="container_imagem_esquerda_virado">
+                    {props.randomPokemon.sprites.front_default ? (
+                      <img
+                        className="imagem_esquerda_virado"
+                        src={props.randomPokemon.sprites.front_default}
+                        alt={`Imagem In Game de ${props.randomPokemon.name}`}
+                      />
+                    ) : (
+                      <span className="span_imagem_virado">
+                        Não há imagens da frente do pokemon
+                      </span>
+                    )}
+                  </div>
+                  <div className="container_imagem_direita_virado">
+                    {props.randomPokemon.sprites.back_default ? (
+                      <img
+                        className="imagem_direita_virado"
+                        src={props.randomPokemon.sprites.back_default}
+                        alt={`Imagem In Game de ${props.randomPokemon.name}`}
+                      />
+                    ) : (
+                      <span className="span_imagem_virado">
+                        Não há imagens das costas do pokemon
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="container_descrição_virado">
+                  <div className="moldura_descrição_virado">
+                    <span className="descrição_virado">{description}</span>
+                  </div>
+                </div>
+                <div className="container_fraquezas_virado">
+                </div>
+                <div className="container_arvore_evolutiva_virado"></div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 }
