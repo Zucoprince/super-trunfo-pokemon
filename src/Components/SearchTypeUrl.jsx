@@ -10,11 +10,11 @@ export default function SearchTypeUrl(props) {
   console.log(props);
 
   useEffect(() => {
-    setUrlTypeUm(props.randomPokemon.types[0].type.url);
-    if (props.randomPokemon.types.length >= 2) {
-      setUrlTypeDois(props.randomPokemon.types[1].type.url);
+    setUrlTypeUm(props.types[0].type.url);
+    if (props.types.length >= 2) {
+      setUrlTypeDois(props.types[1].type.url);
     }
-  }, [setUrlTypeUm, props.randomPokemon.types]);
+  }, [setUrlTypeUm, props.types]);
 
   useEffect(() => {
     const fetchPokemonSpecies = async () => {
