@@ -4,13 +4,10 @@
   justify-content: center;
   flex-direction: column;
   background-color: #ddddde;
-  position: absolute;
-  top: 2.6%;
-  left: 5%;
-  width: 90%;
-  height: 95%;
-  align-self: center;
-  justify-self: center;
+  position: relative;
+  top: 1rem;
+  width: 21rem;
+  height: 30.5rem;
 }
 
 .container_imagens_virado {

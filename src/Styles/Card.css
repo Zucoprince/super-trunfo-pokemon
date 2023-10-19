@@ -17,10 +17,10 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 24vw;
-  height: 35vw;
-  border-radius: 30px;
-  border: 0.8vw solid rgb(27, 27, 27);
+  width: 22rem;
+  height: 520px;
+  border-radius: 20px;
+  border: 0.8rem solid rgb(27, 27, 27);
   box-shadow: 14px 14px 30px 10px black;
   cursor: pointer;
   transition: transform 0.5s;
@@ -168,35 +168,73 @@
   background-color: rgb(0, 0, 0);
   text-overflow: ellipsis;
   white-space: nowrap;
+  box-shadow: 10px -5px 30px 5px black;
+  font-weight: 1000;
 }
 
 .COMUM {
   background-color: rgb(0, 202, 0);
+  border: 1px solid black;
 }
 
 .INCOMUM {
   background-color: rgb(0, 0, 165);
+  color: aliceblue;
+  border: 3px solid rgb(255, 255, 255);
 }
 
 .RARO {
   background-color: rgb(116, 0, 194);
+  border: 3px solid rgb(255, 255, 255);
 }
 
 .MUITO-RARO {
   background-color: rgb(255, 145, 0);
   color: aliceblue;
+  border: 3px solid rgb(255, 255, 255);
 }
 
 .ULTRA-RARO {
   background-color: red;
+  border: 3px solid rgb(255, 255, 255);
 }
 
 .LENDÁRIO {
   background-color: yellow;
+  position: absolute;
+}
+.LENDÁRIO::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: 0;
+  bottom: 0;
+  width: 110%;
+  height: 145%;
+  z-index: -2;
+  background-image: url("https://media.giphy.com/media/xThuWcaa4U4XZQDgvm/giphy.gif");
+  border-radius: 20px;
+}
+.LENDÁRIO::before {
+  background-color: yellow;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+  background-size: cover;
+  border-radius: 20px;
 }
 
 .MÍTICO {
-  background-color: gold;
+  background-image: url("https://media.giphy.com/media/dBxDfKQKl7lOCv4DY5/giphy-downsized-large.gif");
+  background-size: cover;
+  color: aliceblue;
+  border: 4px solid gold;
 }
 
 .DIVINO {
@@ -240,26 +278,38 @@
 
 .container_conteudo_carta_esquerdo {
   display: flex;
-  gap: 5px;
+  gap: 2vw;
   flex-direction: column;
+  width: 70%;
+  height: 100%;
+  justify-content: center;
+  font-size: 100%;
+  flex-grow: 1;
 }
 
 .stats_name {
   font-family: "Pokemon Solid", sans-serif;
-  letter-spacing: 3px;
+  letter-spacing: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-style: oblique;
 }
 
 .stats_value {
-  font-family: "Johnny Torch", sans-serif;
+  font-family: "Pokemon Solid", sans-serif;
+  letter-spacing: 0.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-style: oblique;
 }
 
 .container_conteudo_carta_direito {
   display: flex;
-  gap: 5px;
+  gap: 2vw;
   flex-direction: column;
-}
-
-.status {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
   font-size: 100%;
 }
 
@@ -292,16 +342,4 @@
   font-family: "Bionic Comic", sans-serif;
 }
 
-@media only screen and (max-width: 1024px) {
-  .carta {
-    width: 40vw;
-    height: 58vw;
-  }
-}
 
-@media only screen and (max-width: 425px) {
-  .carta {
-    width: 70vw;
-    height: 110vw;
-  }
-}

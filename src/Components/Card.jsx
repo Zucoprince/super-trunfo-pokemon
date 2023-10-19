@@ -7,15 +7,15 @@ import { apiSpecies } from "../services/api";
 import SearchTypeUrl from "./SearchTypeUrl";
 import GetTypeAverage from "./GetTypeAverage";
 
-export default function Card(props) {
+export default function Card ({ randomPokemon, handleImageLoaded, isCardVisible }) {
   const [firstType, setFirstType] = useState("");
   const [secondType, setSecondType] = useState("");
   const imagem =
-    props.randomPokemon.sprites.other["official-artwork"].front_default;
-  const stats = getStats(props);
+    randomPokemon.sprites.other["official-artwork"].front_default;
+  const stats = getStats(randomPokemon);
   const firstStats = stats.slice(0, Math.ceil(stats.length / 2));
   const secondStats = stats.slice(Math.ceil(stats.length / 2), stats.length);
-  const somaStats = soma(props);
+  const somaStats = soma(randomPokemon);
   const idsRaros = [
     35, 36, 37, 50, 51, 52, 58, 63, 64, 74, 75, 76, 77, 80, 82, 83, 85, 86, 90,
     93, 94, 95, 100, 102, 103, 104, 116, 135, 144, 145, 146, 147, 150, 151, 186,
@@ -26,9 +26,10 @@ export default function Card(props) {
   const [pokemonSpecies, setPokemonSpecies] = useState([]);
   const [maxIndex, setMaxIndex] = useState(0);
   const [description, setDescription] = useState("");
-  const { contentUm, contentDois } = SearchTypeUrl(props);
+  const { contentUm, contentDois } = SearchTypeUrl(randomPokemon);
   const [urlTypeUm, setUrlTypeUm] = useState("");
   const [urlTypeDois, setUrlTypeDois] = useState("");
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const virarCarta = () => {
     setVirada(!virada);
@@ -39,19 +40,19 @@ export default function Card(props) {
     setUrlTypeDois(contentDois);
   }, [contentUm, contentDois]);
 
-  console.log(pokemonSpecies, props.randomPokemon);
+  console.log(pokemonSpecies, randomPokemon);
 
   useEffect(() => {
     const fetchPokemonSpecies = async () => {
       try {
-        const response = await apiSpecies.get(`${props.randomPokemon.id}`);
+        const response = await apiSpecies.get(`${randomPokemon.id}`);
         setPokemonSpecies(response.data);
       } catch (error) {
         console.error("Oops! Ocorreu um erro: " + error);
       }
     };
     fetchPokemonSpecies();
-  }, [props.randomPokemon.id]);
+  }, [randomPokemon.id]);
 
   useEffect(() => {
     if (pokemonSpecies && pokemonSpecies.flavor_text_entries) {
@@ -74,15 +75,15 @@ export default function Card(props) {
   }, [pokemonSpecies, maxIndex]);
 
   useEffect(() => {
-    if (props.randomPokemon.types.length === 1) {
-      setFirstType(props.randomPokemon.types[0].type.name);
+    if (randomPokemon.types.length === 1) {
+      setFirstType(randomPokemon.types[0].type.name);
       setSecondType("");
     }
-    if (props.randomPokemon.types.length === 2) {
-      setFirstType(props.randomPokemon.types[0].type.name);
-      setSecondType(props.randomPokemon.types[1].type.name);
+    if (randomPokemon.types.length === 2) {
+      setFirstType(randomPokemon.types[0].type.name);
+      setSecondType(randomPokemon.types[1].type.name);
     }
-  }, [props.randomPokemon.types]);
+  }, [randomPokemon.types]);
 
   const tipagem =
     secondType !== "" && secondType !== null ? (
@@ -137,25 +138,32 @@ export default function Card(props) {
     }
   };
 
+  const handleImageLoad = () => {
+    setImagesLoaded(true);
+    handleImageLoaded();
+  };
+
+  console.log(isCardVisible);
   return (
     <>
       <div className="container_carta">
         {!virada && (
-          <div className={`carta ${firstType}_carta `} onClick={virarCarta}>
+          <div className={`carta ${firstType}_carta `} onClick={virarCarta} style={{ opacity: isCardVisible }}>
             <div className="topo_carta">
               <div className="nome_pokemon">
-                <span>{props.randomPokemon.name.replace(/-/g, " ")}</span>
+                <span>{randomPokemon.name.replace(/-/g, " ")}</span>
               </div>
               <div className="bloco_raridade">
                 <div
                   className={`container_raridade ${classificarRaridade(
                     somaStats
                   )}`}
+                  // className="container_raridade MÍTICO" // teste
                 >
                   <div className="raridade">
                     {classificarRaridade(
                       somaStats,
-                      props.randomPokemon.id
+                      randomPokemon.id
                     ).replace(/-/g, " ")}
                   </div>
                 </div>
@@ -165,7 +173,8 @@ export default function Card(props) {
               <img
                 src={imagem}
                 className="imagem_carta"
-                alt={`imagem do ${props.randomPokemon.name}`}
+                alt={`imagem do ${randomPokemon.name}`}
+                onLoad={handleImageLoad}
               ></img>
             </div>
             <div className="conteudo_carta">
@@ -200,11 +209,11 @@ export default function Card(props) {
               <div className="container_conteudo_virado">
                 <div className="container_imagens_virado">
                   <div className="container_imagem_esquerda_virado">
-                    {props.randomPokemon.sprites.front_default ? (
+                    {randomPokemon.sprites.front_default ? (
                       <img
                         className="imagem_esquerda_virado"
-                        src={props.randomPokemon.sprites.front_default}
-                        alt={`Imagem In Game de ${props.randomPokemon.name}`}
+                        src={randomPokemon.sprites.front_default}
+                        alt={`Imagem In Game de ${randomPokemon.name}`}
                       />
                     ) : (
                       <span className="span_imagem_virado">
@@ -213,11 +222,11 @@ export default function Card(props) {
                     )}
                   </div>
                   <div className="container_imagem_direita_virado">
-                    {props.randomPokemon.sprites.back_default ? (
+                    {randomPokemon.sprites.back_default ? (
                       <img
                         className="imagem_direita_virado"
-                        src={props.randomPokemon.sprites.back_default}
-                        alt={`Imagem In Game de ${props.randomPokemon.name}`}
+                        src={randomPokemon.sprites.back_default}
+                        alt={`Imagem In Game de ${randomPokemon.name}`}
                       />
                     ) : (
                       <span className="span_imagem_virado">
