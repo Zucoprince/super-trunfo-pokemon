@@ -5,13 +5,17 @@ import "../Styles/CardVirado.css";
 import { getStats, soma } from "./GetStats";
 import { apiSpecies } from "../services/api";
 import SearchTypeUrl from "./SearchTypeUrl";
-import GetTypeAverage from "./GetTypeAverage";
+import TypeAverageIcons from "./TypeAverageIcon";
+import SearchEvoUrl from "./SearchEvoUrl";
 
-export default function Card ({ randomPokemon, handleImageLoaded, isCardVisible }) {
+export default function Card({
+  randomPokemon,
+  handleImageLoaded,
+  isCardVisible,
+}) {
   const [firstType, setFirstType] = useState("");
   const [secondType, setSecondType] = useState("");
-  const imagem =
-    randomPokemon.sprites.other["official-artwork"].front_default;
+  const imagem = randomPokemon.sprites.other["official-artwork"].front_default;
   const stats = getStats(randomPokemon);
   const firstStats = stats.slice(0, Math.ceil(stats.length / 2));
   const secondStats = stats.slice(Math.ceil(stats.length / 2), stats.length);
@@ -26,21 +30,13 @@ export default function Card ({ randomPokemon, handleImageLoaded, isCardVisible 
   const [pokemonSpecies, setPokemonSpecies] = useState([]);
   const [maxIndex, setMaxIndex] = useState(0);
   const [description, setDescription] = useState("");
-  const { contentUm, contentDois } = SearchTypeUrl(randomPokemon);
-  const [urlTypeUm, setUrlTypeUm] = useState("");
-  const [urlTypeDois, setUrlTypeDois] = useState("");
+  const combinedTypeAverages = SearchTypeUrl(randomPokemon);
+  // eslint-disable-next-line no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const virarCarta = () => {
     setVirada(!virada);
   };
-
-  useEffect(() => {
-    setUrlTypeUm(contentUm);
-    setUrlTypeDois(contentDois);
-  }, [contentUm, contentDois]);
-
-  console.log(pokemonSpecies, randomPokemon);
 
   useEffect(() => {
     const fetchPokemonSpecies = async () => {
@@ -143,12 +139,15 @@ export default function Card ({ randomPokemon, handleImageLoaded, isCardVisible 
     handleImageLoaded();
   };
 
-  console.log(isCardVisible);
   return (
     <>
       <div className="container_carta">
         {!virada && (
-          <div className={`carta ${firstType}_carta `} onClick={virarCarta} style={{ opacity: isCardVisible }}>
+          <div
+            className={`carta ${firstType}_carta `}
+            onClick={virarCarta}
+            style={{ opacity: isCardVisible }}
+          >
             <div className="topo_carta">
               <div className="nome_pokemon">
                 <span>{randomPokemon.name.replace(/-/g, " ")}</span>
@@ -161,10 +160,10 @@ export default function Card ({ randomPokemon, handleImageLoaded, isCardVisible 
                   // className="container_raridade MÍTICO" // teste
                 >
                   <div className="raridade">
-                    {classificarRaridade(
-                      somaStats,
-                      randomPokemon.id
-                    ).replace(/-/g, " ")}
+                    {classificarRaridade(somaStats, randomPokemon.id).replace(
+                      /-/g,
+                      " "
+                    )}
                   </div>
                 </div>
               </div>
@@ -241,6 +240,9 @@ export default function Card ({ randomPokemon, handleImageLoaded, isCardVisible 
                   </div>
                 </div>
                 <div className="container_fraquezas_virado">
+                  <TypeAverageIcons
+                    combinedTypeAverages={combinedTypeAverages}
+                  />
                 </div>
                 <div className="container_arvore_evolutiva_virado"></div>
               </div>
@@ -248,6 +250,7 @@ export default function Card ({ randomPokemon, handleImageLoaded, isCardVisible 
           </div>
         )}
       </div>
+      <SearchEvoUrl pokemonSpecies={pokemonSpecies} />
     </>
   );
 }

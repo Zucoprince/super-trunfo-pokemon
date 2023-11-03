@@ -1,0 +1,25 @@
+.container_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: safe;
+    align-items: center;
+    gap: 14px;
+    width: 30%;
+    min-height: 70%;
+    border: 2px black solid;
+}
+
+.container_double_damage_from {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container_double_damage_from img {
+    width: 16.8px;
+}
+
+.container_double_damage_title {
+    font-size: 70%;
+    font-style: bold;
+    padding-top: 13px;
+}
