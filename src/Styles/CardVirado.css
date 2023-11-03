@@ -18,6 +18,7 @@
   background-color: brown;
   flex-grow: 1;
   width: 100%;
+  height: 12%;
 }
 
 .container_descrição_virado {
@@ -27,18 +28,24 @@
   background-color: aqua;
   flex-grow: 1;
   width: 100%;
+  height: 12%;
 }
 
 .container_fraquezas_virado {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   background-color: chartreuse;
   flex-grow: 1;
-  width: 100%;
+  width: 105%;
+  height: 12%;
 }
 
 .container_arvore_evolutiva_virado {
   background-color: darkgoldenrod;
   flex-grow: 1;
   width: 100%;
+  height: 12%;
 }
 
 .container_imagem_esquerda_virado,
@@ -47,7 +54,7 @@
   text-align: center;
   text-justify: center;
   width: 50%;
-  height: 60%;
+  height: 90%;
   border: 1px solid black;
   overflow: hidden;
   background-color: aliceblue;
@@ -67,9 +74,15 @@
 }
 
 .moldura_descrição_virado {
+  display: flex;
     border: 3px solid black;
     width: 80%;
-    margin-top: -40px;
+    height: 50%;
     padding: 20px;
     background-color: aliceblue;
+    overflow: auto;
+}
+
+.descrição_virado {
+  font-size: 100%;
 }
