@@ -109,6 +109,7 @@ export default function GetPokemonChainImage(props) {
             .front_default,
       }));
     }
+    
   }, [pokemonsData]);
 
   const renderImage = () => {
@@ -121,7 +122,7 @@ export default function GetPokemonChainImage(props) {
             </h3>
             <img
               src={pokemonsImage.firstPoke}
-              alt={`Imagem do ${pokemonsData.firstPoke.name}`}
+              alt={`Imagem de ${pokemonsData.firstPoke.name}`}
               className="imagem_pokemon_evolução"
             />
           </div>
@@ -135,7 +136,7 @@ export default function GetPokemonChainImage(props) {
               </h3>
               <img
                 src={pokemonsImage.secondPoke}
-                alt={`Imagem do ${pokemonsData.secondPoke.name}`}
+                alt={`Imagem de ${pokemonsData.secondPoke.name}`}
                 className="imagem_pokemon_evolução"
               />
             </div>
@@ -150,7 +151,7 @@ export default function GetPokemonChainImage(props) {
               </h3>
               <img
                 src={pokemonsImage.thirdPoke}
-                alt={`Imagem do ${pokemonsData.thirdPoke.name}`}
+                alt={`Imagem de ${pokemonsData.thirdPoke.name}`}
                 className="imagem_pokemon_evolução"
               />
             </div>

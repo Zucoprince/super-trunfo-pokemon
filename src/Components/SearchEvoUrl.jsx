@@ -42,9 +42,8 @@ export default function SearchEvoUrl(props) {
   }, [urlEvoChain]);
 
   useEffect(() => {
-    console.log(evoChain);
     if (evoChain && evoChain.evolves_to && evoChain.evolves_to.length > 0) {
-      const firstPoke = evoChain.species.url;
+      let firstPoke = evoChain.species.url;
       let secondPoke = "";
       let thirdPoke = "";
 
@@ -60,7 +59,18 @@ export default function SearchEvoUrl(props) {
 
       setPickPokemonUrl({ firstPoke, secondPoke, thirdPoke });
     }
+
+    if (evoChain && evoChain.evolves_to && evoChain.evolves_to.length < 1) {
+      let firstPoke = evoChain.species.url;
+      let secondPoke = "";
+      let thirdPoke = "";
+
+      setPickPokemonUrl({ firstPoke, secondPoke, thirdPoke });
+    }
+
   }, [evoChain]);
+
+  console.log(pickPokemonUrl);
 
   useEffect(() => {
     if (pickPokemonUrl.firstPoke !== "") {
