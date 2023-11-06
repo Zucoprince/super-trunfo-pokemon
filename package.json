@@ -1,14 +1,6 @@
 {
   "name": "frontend",
-<<<<<<< HEAD
-<<<<<<< HEAD
   "homepage": "https://zucoprince.github.io/super-trunfo-pokemon",
-=======
-  "homepage": "https://github.com/Zucoprince/super-trunfo-pokemon",
->>>>>>> 86c9c6d (Processo de criação da parte traseira da carta)
-=======
-  "homepage": "https://zucoprince.github.io/super-trunfo-pokemon",
->>>>>>> da1b4d4 (Adição de fraquezas e vantagensm, e feito boa parte da corrente evolutiva.)
   "version": "0.1.0",
   "private": true,
   "dependencies": {
