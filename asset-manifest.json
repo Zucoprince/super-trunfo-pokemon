@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/super-trunfo-pokemon/static/css/main.4690b68c.css",
-    "main.js": "/super-trunfo-pokemon/static/js/main.a58f40a4.js",
+    "main.css": "/super-trunfo-pokemon/static/css/main.32af2b05.css",
+    "main.js": "/super-trunfo-pokemon/static/js/main.a73a243e.js",
     "static/js/787.cda612ba.chunk.js": "/super-trunfo-pokemon/static/js/787.cda612ba.chunk.js",
     "static/media/water_card.jpg": "/super-trunfo-pokemon/static/media/water_card.94616c3af736113ea720.jpg",
     "static/media/bug_card.jpg": "/super-trunfo-pokemon/static/media/bug_card.714957710cf0c2c6c015.jpg",
@@ -23,12 +23,12 @@
     "static/media/flying_card.jpeg": "/super-trunfo-pokemon/static/media/flying_card.2c5a2079ba87693c8df1.jpeg",
     "static/media/ground_card.jpeg": "/super-trunfo-pokemon/static/media/ground_card.f27bbcb2b0ab32163b03.jpeg",
     "index.html": "/super-trunfo-pokemon/index.html",
-    "main.4690b68c.css.map": "/super-trunfo-pokemon/static/css/main.4690b68c.css.map",
-    "main.a58f40a4.js.map": "/super-trunfo-pokemon/static/js/main.a58f40a4.js.map",
+    "main.32af2b05.css.map": "/super-trunfo-pokemon/static/css/main.32af2b05.css.map",
+    "main.a73a243e.js.map": "/super-trunfo-pokemon/static/js/main.a73a243e.js.map",
     "787.cda612ba.chunk.js.map": "/super-trunfo-pokemon/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4690b68c.css",
-    "static/js/main.a58f40a4.js"
+    "static/css/main.32af2b05.css",
+    "static/js/main.a73a243e.js"
   ]
 }
