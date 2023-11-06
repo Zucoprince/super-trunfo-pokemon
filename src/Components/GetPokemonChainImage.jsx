@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { api } from "../services/api";
+import "../Styles/GetPokemonChainImage.css";
+import PropTypes from "prop-types";
+import Seta from "../Images/seta-direita.png";
 
 export default function GetPokemonChainImage(props) {
+  GetPokemonChainImage.propTypes = {
+    pokemonData: PropTypes.object.isRequired,
+  };
+
   const pokemonsSpecieData = props.pokemonData;
   const [pokemonsId, setPokemonsId] = useState({
     firstPoke: null,
@@ -12,6 +19,11 @@ export default function GetPokemonChainImage(props) {
     firstPoke: {},
     secondPoke: {},
     thirdPoke: {},
+  });
+  const [pokemonsImage, setPokemonsImage] = useState({
+    firstPoke: "",
+    secondPoke: "",
+    thirdPoke: "",
   });
 
   useEffect(() => {
@@ -42,7 +54,7 @@ export default function GetPokemonChainImage(props) {
             firstPoke: responseFirstPoke.data,
           }));
 
-          if (pokemonsId.secondPoke) {
+          if (pokemonsId.secondPoke !== null) {
             const responseSecondPoke = await api.get(
               `pokemon/${pokemonsId.secondPoke}`
             );
@@ -52,7 +64,7 @@ export default function GetPokemonChainImage(props) {
             }));
           }
 
-          if (pokemonsId.thirdPoke) {
+          if (pokemonsId.thirdPoke !== null) {
             const responseThirdPoke = await api.get(
               `pokemon/${pokemonsId.thirdPoke}`
             );
@@ -70,5 +82,83 @@ export default function GetPokemonChainImage(props) {
     }
   }, [pokemonsId]);
 
-  console.log(pokemonsData);
+  useEffect(() => {
+    if (Object.keys(pokemonsData.firstPoke).length !== 0) {
+      setPokemonsImage((prevState) => ({
+        ...prevState,
+        firstPoke:
+          pokemonsData.firstPoke.sprites.other["official-artwork"]
+            .front_default,
+      }));
+    }
+
+    if (Object.keys(pokemonsData.secondPoke).length !== 0) {
+      setPokemonsImage((prevState) => ({
+        ...prevState,
+        secondPoke:
+          pokemonsData.secondPoke.sprites.other["official-artwork"]
+            .front_default,
+      }));
+    }
+
+    if (Object.keys(pokemonsData.thirdPoke).length !== 0) {
+      setPokemonsImage((prevState) => ({
+        ...prevState,
+        thirdPoke:
+          pokemonsData.thirdPoke.sprites.other["official-artwork"]
+            .front_default,
+      }));
+    }
+  }, [pokemonsData]);
+
+  const renderImage = () => {
+    return (
+      <div className="container_imagens">
+        {pokemonsImage.firstPoke && (
+          <div className="container_primeiro_pokemon">
+            <h3 className="nome_poke_primeiro">
+              {pokemonsData.firstPoke.name}
+            </h3>
+            <img
+              src={pokemonsImage.firstPoke}
+              alt={`Imagem do ${pokemonsData.firstPoke.name}`}
+              className="imagem_pokemon_evolução"
+            />
+          </div>
+        )}
+        {pokemonsImage.secondPoke && (
+          <>
+            <img src={Seta} alt="Seta" className="imagem_seta" />
+            <div className="container_segundo_pokemon">
+              <h3 className="nome_poke_segundo">
+                {pokemonsData.secondPoke.name}
+              </h3>
+              <img
+                src={pokemonsImage.secondPoke}
+                alt={`Imagem do ${pokemonsData.secondPoke.name}`}
+                className="imagem_pokemon_evolução"
+              />
+            </div>
+          </>
+        )}
+        {pokemonsImage.thirdPoke && (
+          <>
+            <img src={Seta} alt="Seta" className="imagem_seta" />
+            <div className="container_terceiro_pokemon">
+              <h3 className="nome_poke_terceiro">
+                {pokemonsData.thirdPoke.name}
+              </h3>
+              <img
+                src={pokemonsImage.thirdPoke}
+                alt={`Imagem do ${pokemonsData.thirdPoke.name}`}
+                className="imagem_pokemon_evolução"
+              />
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
+
+  return <>{renderImage()}</>;
 }

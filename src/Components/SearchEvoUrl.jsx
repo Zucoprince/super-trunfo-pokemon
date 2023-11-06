@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import { api } from "../services/api";
 import GetPokemonChainImage from "./GetPokemonChainImage";
+import PropTypes from "prop-types";
 
 export default function SearchEvoUrl(props) {
+  SearchEvoUrl.propTypes = {
+    pokemonSpecies: PropTypes.object.isRequired,
+  };
+
   const urlEvoChain = props.pokemonSpecies.evolution_chain;
   const [evoChain, setEvoChain] = useState([]);
   const [pickPokemonUrl, setPickPokemonUrl] = useState({
@@ -37,17 +42,20 @@ export default function SearchEvoUrl(props) {
   }, [urlEvoChain]);
 
   useEffect(() => {
-    if (evoChain.species) {
+    console.log(evoChain);
+    if (evoChain && evoChain.evolves_to && evoChain.evolves_to.length > 0) {
       const firstPoke = evoChain.species.url;
       let secondPoke = "";
       let thirdPoke = "";
 
-      if (evoChain.evolves_to[0]) {
+      if (
+        evoChain.evolves_to[0].evolves_to &&
+        evoChain.evolves_to[0].evolves_to.length > 0
+      ) {
         secondPoke = evoChain.evolves_to[0].species.url;
-      }
-
-      if (evoChain.evolves_to[0].evolves_to[0]) {
         thirdPoke = evoChain.evolves_to[0].evolves_to[0].species.url;
+      } else if (evoChain.evolves_to && evoChain.evolves_to.length > 0) {
+        secondPoke = evoChain.evolves_to[0].species.url;
       }
 
       setPickPokemonUrl({ firstPoke, secondPoke, thirdPoke });
@@ -55,7 +63,7 @@ export default function SearchEvoUrl(props) {
   }, [evoChain]);
 
   useEffect(() => {
-    if (pickPokemonUrl) {
+    if (pickPokemonUrl.firstPoke !== "") {
       const fetchPokemonData = async () => {
         try {
           const responseFirstPokemon = await api.get(pickPokemonUrl.firstPoke);
@@ -91,7 +99,5 @@ export default function SearchEvoUrl(props) {
     }
   }, [pickPokemonUrl]);
 
-  return (<>
-    <GetPokemonChainImage pokemonData={pickPokemonData}/>
-  </>)
+  return <GetPokemonChainImage pokemonData={pickPokemonData} />;
 }
