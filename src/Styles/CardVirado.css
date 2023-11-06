@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #ddddde;
   position: relative;
   top: 1rem;
   width: 21rem;
@@ -15,7 +14,6 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-  background-color: brown;
   flex-grow: 1;
   width: 100%;
   height: 12%;
@@ -25,7 +23,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: aqua;
   flex-grow: 1;
   width: 100%;
   height: 12%;
@@ -35,17 +32,17 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  background-color: chartreuse;
   flex-grow: 1;
   width: 105%;
   height: 12%;
 }
 
 .container_arvore_evolutiva_virado {
-  background-color: darkgoldenrod;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: aliceblue;
+  border: 3px solid black;
   flex-grow: 1;
   width: 100%;
   height: 12%;
@@ -54,8 +51,6 @@
 .container_imagem_esquerda_virado,
 .container_imagem_direita_virado {
   display: flex;
-  text-align: center;
-  text-justify: center;
   width: 50%;
   height: 90%;
   border: 1px solid black;
