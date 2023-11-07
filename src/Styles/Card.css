@@ -292,6 +292,7 @@
   justify-content: center;
   font-size: 1.44vw;
   flex-grow: 1;
+  margin-top: -10%;
 }
 
 .stats_name {
@@ -318,6 +319,7 @@
   justify-content: center;
   font-size: 1.44vw;
   flex-grow: 2;
+  margin-top: -10%;
 }
 
 .status_total {
@@ -361,7 +363,7 @@
 
 .container_gen_carta {
   position: absolute;
-  top: 85%;
+  top: 94%;
   left: 68%;
   white-space: nowrap;
   transform: translate(-50%, -50%);

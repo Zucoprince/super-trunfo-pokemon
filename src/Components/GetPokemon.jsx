@@ -3,12 +3,30 @@ import Card from "./Card";
 import { api } from "../services/api";
 import ClipLoader from "react-spinners/ClipLoader";
 import "../Styles/GetPokemon.css";
+import lupa from "../Images/lupa.png";
 
 export default function GetPokemon() {
   const [randomPokemon, setRandomPokemon] = useState(null); // Inicializado como nulo para indicar que nenhum Pokémon foi selecionado ainda
   const [isLoading, setIsLoading] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isCardVisible, setIsCardVisible] = useState(0);
+  const [searchInput, setSearchInput] = useState("");
+
+  const fetchPokemonByName = async (pokemonName) => {
+    try {
+      const response = await api.get(`pokemon/${pokemonName.toLowerCase()}`); // Fazendo uma solicitação para obter todos os dados do Pokémon
+      setRandomPokemon(response.data);
+      setTimeout(() => {
+        setIsLoading(false);
+        setImageLoaded(true);
+      }, imageLoaded === true);
+    } catch (error) {
+      console.error("Oops! Ocorreu um erro: " + error);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+  };
 
   const fetchAllPokemon = async () => {
     try {
@@ -41,14 +59,34 @@ export default function GetPokemon() {
     }, imageLoaded === true);
   };
 
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchInput.trim() !== "") {
+      fetchPokemonByName(searchInput);
+    }
+  };
+
   return (
     <div>
+      <form onSubmit={handleSearchSubmit} className="container_pesquisa">
+        <img src={lupa} alt="Icone de Lupa" width="2%" />
+        <input
+          placeholder="Pesquise aqui seu pokémon!"
+          value={searchInput}
+          onChange={handleSearchInputChange}
+        />
+        <button type="submit">Search</button>
+      </form>
       {isLoading ? (
         <div className="sweet-loading">
           <ClipLoader loading={isLoading} size={50} className="clip_loader" />
         </div>
       ) : (
-        <div>
+        <div className="botao_card">
           <button
             onClick={handleRandomPokemonClick}
             className="button_randomizer"
