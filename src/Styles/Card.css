@@ -9,18 +9,20 @@
   justify-content: center;
   position: absolute;
   left: 50%;
-  top: 50%;
+  width: 100%;
+  top: 60%;
   transform: translate(-50%, -50%);
+  background-color: aqua;
 }
 
 .carta {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 22rem;
-  height: 520px;
-  border-radius: 20px;
-  border: 0.8rem solid rgb(27, 27, 27);
+  width: 22vw;
+  height: 35vw;
+  border-radius: 1vw;
+  border: 0.78vw solid rgb(27, 27, 27);
   box-shadow: 14px 14px 30px 10px black;
   cursor: pointer;
   transition: transform 0.5s;
@@ -126,14 +128,12 @@
 
 .topo_carta {
   font-family: "Gabarito", sans-serif;
-  font-size: 100%;
-  text-overflow: ellipsis;
   white-space: nowrap;
   color: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 106%;
+  width: 100%;
   height: 5%;
 }
 
@@ -150,16 +150,22 @@
   padding-top: 3%;
   padding-bottom: 3%;
   border-radius: 20%;
+  width: 20%;
+  font-size: 1.5vw;
 }
 
 .bloco_raridade {
   position: relative;
+  background-color: chartreuse;
+  width: 35%;
 }
 
 .container_raridade {
   display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  transform: translate(-63%, -100%);
+  transform: translate(30%, -130%);
   padding-top: 2px;
   padding-bottom: 2px;
   padding-right: 10px;
@@ -170,6 +176,8 @@
   white-space: nowrap;
   box-shadow: 10px -5px 30px 5px black;
   font-weight: 1000;
+  width: 100%;
+  font-size: 1.5vw;
 }
 
 .COMUM {
@@ -206,8 +214,8 @@
 .LENDÁRIO::after {
   content: "";
   position: absolute;
-  top: -5px;
-  left: -5px;
+  top: -25%;
+  left: -5%;
   right: 0;
   bottom: 0;
   width: 110%;
@@ -249,8 +257,8 @@
   height: 55%;
   background-color: rgba(165, 42, 42, 0);
   overflow: hidden;
-  border: 8px solid rgb(0, 0, 0);
-  border-radius: 20px;
+  border: 0.6vw solid rgb(0, 0, 0);
+  border-radius: 6%;
 }
 
 .imagem_carta {
@@ -261,11 +269,11 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 96%;
+  width: 100%;
   height: 35%;
   background-color: rgba(235, 235, 235, 0.937);
   border: 2px solid black;
-  border-radius: 40px;
+  border-radius: 5%;
 }
 
 .rodape_carta {
@@ -278,39 +286,38 @@
 
 .container_conteudo_carta_esquerdo {
   display: flex;
-  gap: 2vw;
+  gap: 3%;
   flex-direction: column;
   width: 70%;
   height: 100%;
   justify-content: center;
-  font-size: 100%;
+  font-size: 1.44vw;
   flex-grow: 1;
 }
 
 .stats_name {
   font-family: "Pokemon Solid", sans-serif;
-  letter-spacing: 0.2rem;
-  font-size: 0.7rem;
+  letter-spacing: 0.2vw;
+  font-size: 1vw;
   font-weight: 700;
   font-style: oblique;
 }
 
 .stats_value {
   font-family: "Pokemon Solid", sans-serif;
-  letter-spacing: 0.2rem;
-  font-size: 1rem;
   font-weight: 700;
   font-style: oblique;
 }
 
 .container_conteudo_carta_direito {
   display: flex;
-  gap: 2vw;
+  gap: 3%;
   flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
-  font-size: 100%;
+  font-size: 1.44vw;
+  flex-grow: 2;
 }
 
 .status_total {
@@ -318,11 +325,11 @@
   background-color: rgb(0, 0, 0);
   color: aliceblue;
   padding: 2%;
-  border-radius: 10px;
+  border-radius: 1vw;
   border: 2px solid;
   margin-bottom: 3%;
-  margin-left: 7%;
-  font-size: 80%;
+  margin-left: 2%;
+  font-size: 1.19vw;
 }
 
 .tipagem {
@@ -331,15 +338,61 @@
   display: flex;
   background-color: antiquewhite;
   padding: 2%;
-  border-radius: 10px;
+  border-radius: 1vw;
   border: 2px solid;
   margin-bottom: 3%;
-  margin-right: 7%;
-  font-size: 90%;
+  margin-right: 3%;
+  font-size: 1.53vw;
 }
 
 .stats_values {
   font-family: "Bionic Comic", sans-serif;
 }
 
+@media only screen and (max-width: 900px) {
+  .carta {
+    width: 60vw;
+    height: 90vw;
+  }
 
+  .nome_pokemon {
+    font-size: 2.3vw;
+  }
+
+  .bloco_raridade {
+    width: 20%;
+  }
+
+  .container_raridade {
+    transform: translate(10%, -120%);
+    font-size: 2vw;
+  }
+
+  .container_imagem_carta {
+    border: 1.3vw solid rgb(0, 0, 0);
+  }
+
+  .container_conteudo_carta_esquerdo {
+    font-size: 2.8vw;
+  }
+
+  .stats_name {
+    font-family: "Pokemon Solid", sans-serif;
+    letter-spacing: 0.2vw;
+    font-size: 2.5vw;
+    font-weight: 700;
+    font-style: oblique;
+  }
+
+  .container_conteudo_carta_direito {
+    font-size: 2.8vw;
+  }
+
+  .status_total {
+    font-size: 2.5vw;
+  }
+
+  .tipagem {
+    font-size: 2.6vw;
+  }
+}

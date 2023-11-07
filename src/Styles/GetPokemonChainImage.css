@@ -18,17 +18,25 @@
 .container_primeiro_pokemon,
 .container_segundo_pokemon,
 .container_terceiro_pokemon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .nome_poke_primeiro,
 .nome_poke_segundo,
 .nome_poke_terceiro {
-    font-size: 90%;
+  font-size: 1vw;
+}
+
+@media only screen and (max-width: 900px) {
+  .nome_poke_primeiro,
+  .nome_poke_segundo,
+  .nome_poke_terceiro {
+    font-size: 2.3vw;
+  }
 }

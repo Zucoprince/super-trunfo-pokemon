@@ -4,9 +4,8 @@
   justify-content: center;
   flex-direction: column;
   position: relative;
-  top: 1rem;
-  width: 21rem;
-  height: 30.5rem;
+  width: 100%;
+  height: 100%;
 }
 
 .container_imagens_virado {
@@ -51,7 +50,9 @@
 .container_imagem_esquerda_virado,
 .container_imagem_direita_virado {
   display: flex;
-  width: 50%;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   height: 90%;
   border: 1px solid black;
   overflow: hidden;
@@ -59,28 +60,42 @@
 }
 
 .container_imagem_esquerda_virado {
-  margin-left: 30px;
+  margin-left: 10%;
 }
 
 .container_imagem_direita_virado {
-  margin-right: 30px;
+  margin-right: 10%;
 }
 
 .imagem_esquerda_virado,
 .imagem_direita_virado {
-  width: 100%;
+  width: 130%;
 }
 
 .moldura_descrição_virado {
   display: flex;
-    border: 3px solid black;
-    width: 80%;
-    height: 50%;
-    padding: 20px;
-    background-color: aliceblue;
-    overflow: auto;
+  border: 3px solid black;
+  width: 100%;
+  height: 70%;
+  padding: 4%;
+  background-color: aliceblue;
+  overflow: auto;
 }
 
 .descrição_virado {
-  font-size: 100%;
+  font-size: 1.3vw;
+}
+
+@media only screen and (max-width: 900px) {
+  .container_fraquezas_virado {
+    width: 100%;
+  }
+
+  .container_arvore_evolutiva_virado {
+    width: 98%;
+  }
+
+  .descrição_virado {
+    font-size: 3vw;
+  }
 }
