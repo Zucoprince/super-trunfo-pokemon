@@ -157,7 +157,6 @@ export default function Card({
               virarCarta();
             }
           }}
-          role="button"
           tabIndex={0}
           style={{ opacity: isCardVisible }}
         >
