@@ -5,12 +5,11 @@
   font-family: "Pokemon Solid", sans-serif;
   align-items: center;
   justify-content: center;
-  width: 15rem;
-  height: 6rem;
+  height: 6%;
   background-color: rgb(255, 255, 123);
-  border: 6px solid rgb(0, 0, 143);
-  border-radius: 20px;
-  letter-spacing: 5px;
+  border: 0.5vw solid rgb(0, 0, 143);
+  border-radius: 1vw;
+  letter-spacing: 0.3vw;
   position: absolute;
   left: 50%;
   top: 5%;
@@ -19,7 +18,9 @@
 }
 
 .texto_botao {
-    font-size: 16px;
+  font-size: 1vw;
+  white-space: nowrap;
+  flex-basis: 100%;
 }
 
 .clip_loader {
@@ -28,4 +29,17 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 900px) {
+  .texto_botao {
+    font-size: 3vw;
+    white-space: nowrap;
+    flex-basis: 100%;
+  }
+
+  .button_randomizer {
+    border: 1.4vw solid rgb(0, 0, 143);
+  }
 }

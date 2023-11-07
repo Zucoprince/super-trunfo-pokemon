@@ -12,7 +12,6 @@
   width: 100%;
   top: 60%;
   transform: translate(-50%, -50%);
-  background-color: aqua;
 }
 
 .carta {
@@ -313,6 +312,7 @@
   display: flex;
   gap: 3%;
   flex-direction: column;
+  position: relative;
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -347,6 +347,27 @@
 
 .stats_values {
   font-family: "Bionic Comic", sans-serif;
+}
+
+.container_id_carta {
+  position: absolute;
+  top: 86%;
+  left: 2%;
+  transform: translate(10%, 10%);
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.container_gen_carta {
+  position: absolute;
+  top: 85%;
+  left: 68%;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -394,5 +415,45 @@
 
   .tipagem {
     font-size: 2.6vw;
+  }
+}
+
+@media only screen and (max-width: 3840px) and (min-width: 900px) {
+
+  .nome_pokemon {
+    font-size: 1vw;
+  }
+
+  .container_raridade {
+    transform: translate(10%, -120%);
+    font-size: 1vw;
+  }
+
+  .container_imagem_carta {
+    border: 0.7vw solid rgb(0, 0, 0);
+  }
+
+  .container_conteudo_carta_esquerdo {
+    font-size: 1.2vw;
+  }
+
+  .stats_name {
+    font-family: "Pokemon Solid", sans-serif;
+    letter-spacing: 0.2vw;
+    font-size: 1vw;
+    font-weight: 700;
+    font-style: oblique;
+  }
+
+  .container_conteudo_carta_direito {
+    font-size: 1.2vw;
+  }
+
+  .status_total {
+    font-size: 1vw;
+  }
+
+  .tipagem {
+    font-size: 1vw;
   }
 }

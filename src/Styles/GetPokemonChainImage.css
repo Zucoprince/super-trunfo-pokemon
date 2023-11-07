@@ -31,6 +31,8 @@
 .nome_poke_segundo,
 .nome_poke_terceiro {
   font-size: 1vw;
+  margin-bottom: 0.2%;
+  margin-top: 0.1%;
 }
 
 @media only screen and (max-width: 900px) {

@@ -3,6 +3,7 @@ import { api } from "../services/api";
 import "../Styles/GetPokemonChainImage.css";
 import PropTypes from "prop-types";
 import Seta from "../Images/seta-direita.png";
+import GetTypeIcon from "./GetTypeIcon";
 
 export default function GetPokemonChainImage(props) {
   GetPokemonChainImage.propTypes = {
@@ -24,6 +25,14 @@ export default function GetPokemonChainImage(props) {
     firstPoke: "",
     secondPoke: "",
     thirdPoke: "",
+  });
+  const [pokemonsType, setPokemonsType] = useState({
+    firstPokeType1: "",
+    firstPokeType2: "",
+    secondPokeType1: "",
+    secondPokeType2: "",
+    thirdPokeType1: "",
+    thirdPokeType2: "",
   });
 
   useEffect(() => {
@@ -90,6 +99,19 @@ export default function GetPokemonChainImage(props) {
           pokemonsData.firstPoke.sprites.other["official-artwork"]
             .front_default,
       }));
+      if (Object.keys(pokemonsData.firstPoke.types).length === 1) {
+        setPokemonsType((prevState) => ({
+          ...prevState,
+          firstPokeType1: pokemonsData.firstPoke.types[0].type.name,
+        }));
+      }
+      if (Object.keys(pokemonsData.firstPoke.types).length === 2) {
+        setPokemonsType((prevState) => ({
+          ...prevState,
+          firstPokeType1: pokemonsData.firstPoke.types[0].type.name,
+          firstPokeType2: pokemonsData.firstPoke.types[1].type.name,
+        }));
+      }
     }
 
     if (Object.keys(pokemonsData.secondPoke).length !== 0) {
@@ -99,6 +121,19 @@ export default function GetPokemonChainImage(props) {
           pokemonsData.secondPoke.sprites.other["official-artwork"]
             .front_default,
       }));
+      if (Object.keys(pokemonsData.secondPoke.types).length === 1) {
+        setPokemonsType((prevState) => ({
+          ...prevState,
+          secondPokeType1: pokemonsData.secondPoke.types[0].type.name,
+        }));
+      }
+      if (Object.keys(pokemonsData.secondPoke.types).length === 2) {
+        setPokemonsType((prevState) => ({
+          ...prevState,
+          secondPokeType1: pokemonsData.secondPoke.types[0].type.name,
+          secondPokeType2: pokemonsData.secondPoke.types[1].type.name,
+        }));
+      }
     }
 
     if (Object.keys(pokemonsData.thirdPoke).length !== 0) {
@@ -108,9 +143,62 @@ export default function GetPokemonChainImage(props) {
           pokemonsData.thirdPoke.sprites.other["official-artwork"]
             .front_default,
       }));
+      if (Object.keys(pokemonsData.thirdPoke.types).length === 1) {
+        setPokemonsType((prevState) => ({
+          ...prevState,
+          thirdPokeType1: pokemonsData.thirdPoke.types[0].type.name,
+        }));
+      }
+      if (Object.keys(pokemonsData.thirdPoke.types).length === 2) {
+        setPokemonsType((prevState) => ({
+          ...prevState,
+          thirdPokeType1: pokemonsData.thirdPoke.types[0].type.name,
+          thirdPokeType2: pokemonsData.thirdPoke.types[1].type.name,
+        }));
+      }
     }
-    
   }, [pokemonsData]);
+
+  const pickTypeIcon = (wich) => {
+    if (wich === "firstPoke") {
+      if (pokemonsType.firstPokeType2) {
+        return (
+          <div className="container_icones">
+            <GetTypeIcon type={pokemonsType.firstPokeType1} />
+            <GetTypeIcon type={pokemonsType.firstPokeType2} />
+          </div>
+        );
+      } else {
+        return <GetTypeIcon type={pokemonsType.firstPokeType1} />;
+      }
+    }
+
+    if (wich === "secondPoke") {
+      if (pokemonsType.secondPokeType2) {
+        return (
+          <div className="container_icones">
+            <GetTypeIcon type={pokemonsType.secondPokeType1} />
+            <GetTypeIcon type={pokemonsType.secondPokeType2} />
+          </div>
+        );
+      } else {
+        return <GetTypeIcon type={pokemonsType.secondPokeType1} />;
+      }
+    }
+
+    if (wich === "thirdPoke") {
+      if (pokemonsType.thirdPokeType2) {
+        return (
+          <div className="container_icones">
+            <GetTypeIcon type={pokemonsType.thirdPokeType1} />
+            <GetTypeIcon type={pokemonsType.thirdPokeType2} />
+          </div>
+        );
+      } else {
+        return <GetTypeIcon type={pokemonsType.thirdPokeType1} />;
+      }
+    }
+  };
 
   const renderImage = () => {
     return (
@@ -120,6 +208,7 @@ export default function GetPokemonChainImage(props) {
             <h3 className="nome_poke_primeiro">
               {pokemonsData.firstPoke.name}
             </h3>
+            {pickTypeIcon("firstPoke")}
             <img
               src={pokemonsImage.firstPoke}
               alt={`Imagem de ${pokemonsData.firstPoke.name}`}
@@ -134,6 +223,7 @@ export default function GetPokemonChainImage(props) {
               <h3 className="nome_poke_segundo">
                 {pokemonsData.secondPoke.name}
               </h3>
+              {pickTypeIcon("secondPoke")}
               <img
                 src={pokemonsImage.secondPoke}
                 alt={`Imagem de ${pokemonsData.secondPoke.name}`}
@@ -149,6 +239,7 @@ export default function GetPokemonChainImage(props) {
               <h3 className="nome_poke_terceiro">
                 {pokemonsData.thirdPoke.name}
               </h3>
+              {pickTypeIcon("thirdPoke")}
               <img
                 src={pokemonsImage.thirdPoke}
                 alt={`Imagem de ${pokemonsData.thirdPoke.name}`}

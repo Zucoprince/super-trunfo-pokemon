@@ -70,8 +70,6 @@ export default function SearchEvoUrl(props) {
 
   }, [evoChain]);
 
-  console.log(pickPokemonUrl);
-
   useEffect(() => {
     if (pickPokemonUrl.firstPoke !== "") {
       const fetchPokemonData = async () => {

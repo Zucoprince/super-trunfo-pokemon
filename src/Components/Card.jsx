@@ -8,6 +8,7 @@ import SearchTypeUrl from "./SearchTypeUrl";
 import TypeAverageIcons from "./TypeAverageIcon";
 import SearchEvoUrl from "./SearchEvoUrl";
 import PropTypes from "prop-types";
+import GetGen from "./GetGen";
 
 export default function Card({
   randomPokemon,
@@ -40,6 +41,7 @@ export default function Card({
   const combinedTypeAverages = SearchTypeUrl(randomPokemon);
   // eslint-disable-next-line no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [getGen, setGetGen] = useState("");
 
   const virarCarta = () => {
     setVirada(!virada);
@@ -75,7 +77,9 @@ export default function Card({
         });
       }
     }
-  }, [pokemonSpecies, maxIndex]);
+
+    setGetGen(GetGen(randomPokemon.id));
+  }, [pokemonSpecies, maxIndex, randomPokemon]);
 
   useEffect(() => {
     if (randomPokemon.types.length === 1) {
@@ -196,6 +200,9 @@ export default function Card({
                   <span className="stats_values">{stat.statsValues}</span>
                 </div>
               ))}
+              <div className="container_id_carta">
+                <span className="id_carta">ID: #{randomPokemon.id}</span>
+              </div>
             </div>
             <div className="container_conteudo_carta_direito">
               {secondStats.map((stat, index) => (
@@ -204,6 +211,9 @@ export default function Card({
                   <span className="stats_values">{stat.statsValues}</span>
                 </div>
               ))}
+              <div className="container_gen_carta">
+                <span className="gen_carta">{getGen}</span>
+              </div>
             </div>
           </div>
           <div className="rodape_carta">
