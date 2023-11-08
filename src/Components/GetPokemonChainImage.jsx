@@ -53,7 +53,7 @@ export default function GetPokemonChainImage(props) {
   }, [pokemonsSpecieData]);
 
   useEffect(() => {
-    if (pokemonsId.firstPoke !== null) {
+    if (pokemonsId.firstPoke !== null && pokemonsId.firstPoke !== undefined) {
       const fetchPokemon = async () => {
         try {
           const responseFirstPoke = await api.get(
@@ -64,7 +64,7 @@ export default function GetPokemonChainImage(props) {
             firstPoke: responseFirstPoke.data,
           }));
 
-          if (pokemonsId.secondPoke !== null) {
+          if (pokemonsId.secondPoke !== null && pokemonsId.secondPoke !== undefined) {
             const responseSecondPoke = await api.get(
               `pokemon/${pokemonsId.secondPoke}`
             );
@@ -74,7 +74,7 @@ export default function GetPokemonChainImage(props) {
             }));
           }
 
-          if (pokemonsId.thirdPoke !== null) {
+          if (pokemonsId.thirdPoke !== null && pokemonsId.thirdPoke !== undefined) {
             const responseThirdPoke = await api.get(
               `pokemon/${pokemonsId.thirdPoke}`
             );

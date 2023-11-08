@@ -21,7 +21,7 @@
   width: 22vw;
   height: 35vw;
   border-radius: 1vw;
-  border: 0.78vw solid rgb(27, 27, 27);
+  border: 0.78vw solid rgb(119, 119, 119);
   box-shadow: 14px 14px 30px 10px black;
   cursor: pointer;
   transition: transform 0.5s;
@@ -35,13 +35,10 @@
 .water_carta {
   background-image: url("../../public/water_card.jpg");
   background-size: 220%;
-  border-color: rgb(208, 255, 0);
-  border-color: rgb(9, 54, 255);
 }
 .bug_carta {
   background-image: url("../../public/bug_card.jpg");
   background-size: 300%;
-  border-color: rgb(158, 255, 103);
 }
 .dark_carta {
   background-image: url("../../public/dark_card.jpg");
@@ -50,79 +47,64 @@
 .dragon_carta {
   background-image: url("../../public/dragon_card.jpg");
   background-size: 260%;
-  border-color: rgb(69, 212, 255);
 }
 .electric_carta {
   background-image: url("../../public/electric_card.jpg");
   background-size: 200%;
   background-position: center;
-  border-color: rgb(208, 255, 0);
 }
 .fairy_carta {
   background-image: url("../../public/fairy_card.jpg");
   background-size: 300%;
-  border-color: rgb(255, 0, 179);
 }
 .fighting_carta {
   background-image: url("../../public/fighting_card.jpeg");
   background-size: 150%;
-  border-color: rgb(255, 153, 0);
   background-position: top;
 }
 .fire_carta {
   background-image: url("../../public/fire_card.jpeg");
   background-size: 100%;
-  border-color: rgb(255, 0, 0);
 }
 .flying_carta {
   background-image: url("../../public/flying_card.jpeg");
   background-size: 100%;
-  border-color: rgb(171, 205, 255);
 }
 .ghost_carta {
   background-image: url("../../public/ghost_card.jpeg");
   background-size: 100%;
-  border-color: rgb(73, 31, 139);
 }
 .grass_carta {
   background-image: url("../../public/grass_card.jpeg");
   background-size: 100%;
-  border-color: rgb(74, 202, 0);
 }
 .ground_carta {
   background-image: url("../../public/ground_card.jpeg");
   background-size: 100%;
-  border-color: rgb(122, 60, 31);
 }
 .ice_carta {
   background-image: url("../../public/ice_card.jpeg");
   background-size: 100%;
-  border-color: rgb(22, 239, 255);
 }
 .normal_carta {
   background-image: url("../../public/normal_card.jpeg");
   background-size: 100%;
-  border-color: rgb(191, 191, 191);
 }
 .poison_carta {
   background-image: url("../../public/poison_card.jpeg");
   background-size: 100%;
-  border-color: rgb(169, 65, 255);
 }
 .psychic_carta {
   background-image: url("../../public/psychic_card.jpeg");
   background-size: 100%;
-  border-color: rgb(255, 0, 212);
 }
 .rock_carta {
   background-image: url("../../public/rock_card.jpeg");
   background-size: 100%;
-  border-color: rgb(73, 29, 11);
 }
 .steel_carta {
   background-image: url("../../public/steel_card.jpeg");
   background-size: 200%;
-  border-color: rgb(167, 167, 167);
 }
 
 .topo_carta {
@@ -421,7 +403,6 @@
 }
 
 @media only screen and (max-width: 3840px) and (min-width: 900px) {
-
   .nome_pokemon {
     font-size: 1vw;
   }
