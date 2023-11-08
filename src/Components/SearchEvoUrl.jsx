@@ -15,7 +15,7 @@ export default function SearchEvoUrl(props) {
     secondPoke: "",
     thirdPoke: "",
   });
-  const [pickPokemonData, setPickPokemonData] = useState([
+  const [pickPokemonData, setPickPokemonData] = useState(
     {
       firstPoke: {},
     },
@@ -24,8 +24,8 @@ export default function SearchEvoUrl(props) {
     },
     {
       thirdPoke: {},
-    },
-  ]);
+    }
+  );
 
   useEffect(() => {
     if (urlEvoChain) {
@@ -67,7 +67,6 @@ export default function SearchEvoUrl(props) {
 
       setPickPokemonUrl({ firstPoke, secondPoke, thirdPoke });
     }
-
   }, [evoChain]);
 
   useEffect(() => {
@@ -106,6 +105,6 @@ export default function SearchEvoUrl(props) {
       fetchPokemonData();
     }
   }, [pickPokemonUrl]);
-
+  
   return <GetPokemonChainImage pokemonData={pickPokemonData} />;
 }

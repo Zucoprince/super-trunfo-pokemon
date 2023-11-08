@@ -34,19 +34,6 @@
   left: 50vw;
 }
 
-.container_pesquisa {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1%;
-  margin-top: 2%;
-}
-
-.container_pesquisa input {
-  height: 30px;
-  border-radius: 1vw;
-}
-
 @media only screen and (max-width: 900px) {
   .texto_botao {
     font-size: 3vw;

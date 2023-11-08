@@ -35,6 +35,7 @@ export default function GetPokemonChainImage(props) {
     thirdPokeType2: "",
   });
 
+
   useEffect(() => {
     if (pokemonsSpecieData) {
       setPokemonsId({
