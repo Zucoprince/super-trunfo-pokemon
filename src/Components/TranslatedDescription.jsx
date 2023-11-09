@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { api, apiSpecies } from "../services/api";
+
 export default function TranslatedDescription(props) {
   const descriptions = {
     pokemon_v2_pokemonspecies: [
@@ -10129,14 +10132,57 @@ export default function TranslatedDescription(props) {
     ],
   };
 
+  const [descricao, setDescricao] = useState("");
+  const names = [
+    "mr.mime",
+    "ho-ho",
+    "mime.jr",
+    "porygon-z",
+    "shaymin-land",
+    "mr-rime",
+    "Jangmo-o",
+    "Hakamo-o",
+    "Kommo-o",
+    "Wo-Chien",
+    "Chien-Pao",
+    "Ting-Lu",
+    "Chi-Yu",
+  ];
 
-  const getDescriptionById = () => {
-    for (const species of descriptions.pokemon_v2_pokemonspecies) {
-      if (species.id === props) {
-        return species.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text;
+  useEffect(() => {
+    const getDescriptionById = async () => {
+      try {
+        let descriptionText = "";
+        if (props.id < 1010) {
+          for (const species of descriptions.pokemon_v2_pokemonspecies) {
+            if (species.id === props.id) {
+              descriptionText =
+                species.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text;
+            }
+          }
+        } else {
+          let response;
+          if (!names.includes(props.name)) {
+            response = await api.get(`pokemon/${props.name.split("-")[0]}`);
+          } else {
+            response = await api.get(`pokemon/${props.name}`);
+          }
+
+          for (const species of descriptions.pokemon_v2_pokemonspecies) {
+            if (species.id === response.data.id) {
+              descriptionText =
+                species.pokemon_v2_pokemonspeciesflavortexts[0].flavor_text;
+            }
+          }
+        }
+        setDescricao(descriptionText);
+      } catch (error) {
+        console.error("Oops! Ocorreu um erro: " + error);
       }
-    }
-  }
+    };
 
-  return getDescriptionById();
+    getDescriptionById();
+  });
+
+  return descricao.toString();
 }

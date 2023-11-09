@@ -10,6 +10,8 @@ import SearchEvoUrl from "./SearchEvoUrl";
 import PropTypes from "prop-types";
 import GetGen from "./GetGen";
 import TranslatedDescription from "./TranslatedDescription";
+import GetMainImage from "./GetMainImage";
+import shine from "../Images/shine.png";
 
 export default function Card({
   randomPokemon,
@@ -24,7 +26,8 @@ export default function Card({
 
   const [firstType, setFirstType] = useState("");
   const [secondType, setSecondType] = useState("");
-  const imagem = randomPokemon.sprites.other["official-artwork"].front_default;
+  const [itsShine, setItsShine] = useState(false);
+  const imagem = GetMainImage(randomPokemon, itsShine);
   const stats = getStats(randomPokemon);
   const firstStats = stats.slice(0, Math.ceil(stats.length / 2));
   const secondStats = stats.slice(Math.ceil(stats.length / 2), stats.length);
@@ -35,8 +38,8 @@ export default function Card({
   // eslint-disable-next-line no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [getGen, setGetGen] = useState("");
-  const pokemonsDescriptions = TranslatedDescription(randomPokemon.id);
-
+  const pokemonsDescriptions = TranslatedDescription(randomPokemon);
+  const [buttonShineContent, setButtonShineContent] = useState("Ver Shine!");
 
   const virarCarta = () => {
     setVirada(!virada);
@@ -105,84 +108,119 @@ export default function Card({
     handleImageLoaded();
   };
 
+  const onItsShiny = () => {
+    setItsShine(!itsShine);
+
+    if (itsShine === true) {
+      setButtonShineContent("Ver Shine!");
+    }
+    if (itsShine === false) {
+      setButtonShineContent("Ver Padrão");
+    }
+  };
+
   return (
-    <div className="container_carta">
-      {!virada && (
-        <div
-          className={`carta ${firstType}_carta `}
-          onClick={virarCarta}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              virarCarta();
+    <>
+      <div className="container_body_shiny">
+        <div className="container_botao_shiny">
+          <button
+            className={
+              buttonShineContent === "Ver Shine!"
+                ? "botao_shine"
+                : "botao_normal"
             }
-          }}
-          tabIndex={0}
-          style={{ opacity: isCardVisible }}
-        >
-          <div className="topo_carta">
-            <div className="nome_pokemon">
-              <span>{randomPokemon.name.replace(/-/g, " ")}</span>
-            </div>
-            <div className="bloco_raridade">
-              <div
-                className={`container_raridade ${classificarRaridade(
-                  somaStats
-                )}`}
-                // className="container_raridade MÍTICO" // teste
-              >
-                <div className="raridade">
-                  {classificarRaridade(somaStats, randomPokemon.id).replace(
-                    /-/g,
-                    " "
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="container_imagem_carta">
-            <img
-              src={imagem}
-              className="imagem_carta"
-              alt={`imagem do ${randomPokemon.name}`}
-              onLoad={handleImageLoad}
-            ></img>
-          </div>
-          <div className="conteudo_carta">
-            <div className="container_conteudo_carta_esquerdo">
-              {firstStats.map((stat, index) => (
-                <div key={index} className="status">
-                  <span className="stats_name">{stat.statsName}</span>:{" "}
-                  <span className="stats_values">{stat.statsValues}</span>
-                </div>
-              ))}
-              <div className="container_id_carta">
-                <span className="id_carta">ID: #{randomPokemon.id}</span>
-              </div>
-            </div>
-            <div className="container_conteudo_carta_direito">
-              {secondStats.map((stat, index) => (
-                <div key={index} className="status">
-                  <span className="stats_name">{stat.statsName}</span>:{" "}
-                  <span className="stats_values">{stat.statsValues}</span>
-                </div>
-              ))}
-              <div className="container_gen_carta">
-                <span className="gen_carta">{getGen}</span>
-              </div>
-            </div>
-          </div>
-          <div className="rodape_carta">
-            <div className="status_total">POWER MAX: {somaStats}</div>
-            <div className={`tipagem ${firstType}_${secondType}`}>
-              {tipagem}
-            </div>
-          </div>
+            onClick={onItsShiny}
+          >
+            {buttonShineContent}
+          </button>
         </div>
-      )}
-      {virada && (
-        <div className="container_carta">
+      </div>
+      <div className="container_carta">
+        {!virada && (
           <div
-            className={`carta ${firstType}_carta `}
+            className={`carta ${firstType}_carta ${
+              itsShine === true && "carta_shine"
+            }`}
+            onClick={virarCarta}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                virarCarta();
+              }
+            }}
+            tabIndex={0}
+            style={{ opacity: isCardVisible }}
+          >
+            <div className="topo_carta">
+              <div className="nome_pokemon">
+                <span>{randomPokemon.name.replace(/-/g, " ")}</span>
+              </div>
+              <div className="bloco_raridade">
+                <div
+                  className={`container_raridade ${classificarRaridade(
+                    somaStats
+                  )}`}
+                  // className="container_raridade MÍTICO" // teste
+                >
+                  <div className="raridade">
+                    {classificarRaridade(somaStats, randomPokemon.id).replace(
+                      /-/g,
+                      " "
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="container_imagem_carta">
+              {itsShine === true && (
+                // <img src={shine} alt="Icone Shine" className="icone_shine_imagem"/>
+                <h1 alt="Icone Shine" className="icone_shine_imagem">
+                  SHINE!
+                </h1>
+              )}
+              <img
+                src={imagem.mainImage}
+                className="imagem_carta"
+                alt={`imagem do ${randomPokemon.name}`}
+                onLoad={handleImageLoad}
+              ></img>
+            </div>
+            <div className="conteudo_carta">
+              <div className="container_conteudo_carta_esquerdo">
+                {firstStats.map((stat, index) => (
+                  <div key={index} className="status">
+                    <span className="stats_name">{stat.statsName}</span>:{" "}
+                    <span className="stats_values">{stat.statsValues}</span>
+                  </div>
+                ))}
+                <div className="container_id_carta">
+                  <span className="id_carta">ID: #{randomPokemon.id}</span>
+                </div>
+              </div>
+              <div className="container_conteudo_carta_direito">
+                {secondStats.map((stat, index) => (
+                  <div key={index} className="status">
+                    <span className="stats_name">{stat.statsName}</span>:{" "}
+                    <span className="stats_values">{stat.statsValues}</span>
+                  </div>
+                ))}
+                <div className="container_gen_carta">
+                  <span className="gen_carta">{getGen}</span>
+                </div>
+              </div>
+            </div>
+            <div className="rodape_carta">
+              <div className="status_total">POWER MAX: {somaStats}</div>
+              <div className={`tipagem ${firstType}_${secondType}`}>
+                {tipagem}
+              </div>
+            </div>
+          </div>
+        )}
+        {virada && (
+          <div
+            className={`carta ${firstType}_carta ${
+              itsShine === true && "carta_shine"
+            }`}
             onClick={virarCarta}
             onKeyDown={(event) => {
               if (event.key === "Enter" || event.key === " ") {
@@ -194,10 +232,10 @@ export default function Card({
             <div className="container_conteudo_virado">
               <div className="container_imagens_virado">
                 <div className="container_imagem_esquerda_virado">
-                  {randomPokemon.sprites.front_default ? (
+                  {imagem.front ? (
                     <img
                       className="imagem_esquerda_virado"
-                      src={randomPokemon.sprites.front_default}
+                      src={imagem.front}
                       alt={`Imagem In Game de ${randomPokemon.name}`}
                     />
                   ) : (
@@ -207,10 +245,10 @@ export default function Card({
                   )}
                 </div>
                 <div className="container_imagem_direita_virado">
-                  {randomPokemon.sprites.back_default ? (
+                  {imagem.back ? (
                     <img
                       className="imagem_direita_virado"
-                      src={randomPokemon.sprites.back_default}
+                      src={imagem.back}
                       alt={`Imagem In Game de ${randomPokemon.name}`}
                     />
                   ) : (
@@ -222,19 +260,21 @@ export default function Card({
               </div>
               <div className="container_descrição_virado">
                 <div className="moldura_descrição_virado">
-                  <span className="descrição_virado">{pokemonsDescriptions}</span>
+                  <span className="descrição_virado">
+                    {pokemonsDescriptions}
+                  </span>
                 </div>
               </div>
               <div className="container_fraquezas_virado">
                 <TypeAverageIcons combinedTypeAverages={combinedTypeAverages} />
               </div>
               <div className="container_arvore_evolutiva_virado">
-                <SearchEvoUrl pokemonSpecies={pokemonSpecies} />
+                <SearchEvoUrl pokemonSpecies={pokemonSpecies} itsShine={itsShine} />
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }

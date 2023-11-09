@@ -4,10 +4,12 @@ import "../Styles/GetPokemonChainImage.css";
 import PropTypes from "prop-types";
 import Seta from "../Images/seta-direita.png";
 import GetTypeIcon from "./GetTypeIcon";
+import iconeTroca from "../Images/troca.png";
 
 export default function GetPokemonChainImage(props) {
   GetPokemonChainImage.propTypes = {
     pokemonData: PropTypes.object.isRequired,
+    itsShine: PropTypes.bool.isRequired,
   };
 
   const pokemonsSpecieData = props.pokemonData;
@@ -64,7 +66,10 @@ export default function GetPokemonChainImage(props) {
             firstPoke: responseFirstPoke.data,
           }));
 
-          if (pokemonsId.secondPoke !== null && pokemonsId.secondPoke !== undefined) {
+          if (
+            pokemonsId.secondPoke !== null &&
+            pokemonsId.secondPoke !== undefined
+          ) {
             const responseSecondPoke = await api.get(
               `pokemon/${pokemonsId.secondPoke}`
             );
@@ -74,7 +79,10 @@ export default function GetPokemonChainImage(props) {
             }));
           }
 
-          if (pokemonsId.thirdPoke !== null && pokemonsId.thirdPoke !== undefined) {
+          if (
+            pokemonsId.thirdPoke !== null &&
+            pokemonsId.thirdPoke !== undefined
+          ) {
             const responseThirdPoke = await api.get(
               `pokemon/${pokemonsId.thirdPoke}`
             );
@@ -84,7 +92,7 @@ export default function GetPokemonChainImage(props) {
             }));
           }
         } catch (error) {
-          console.log("Oops! Ocorreu um erro: " + error);
+          console.error("Oops! Ocorreu um erro: " + error);
         }
       };
 
@@ -94,12 +102,21 @@ export default function GetPokemonChainImage(props) {
 
   useEffect(() => {
     if (Object.keys(pokemonsData.firstPoke).length !== 0) {
-      setPokemonsImage((prevState) => ({
-        ...prevState,
-        firstPoke:
-          pokemonsData.firstPoke.sprites.other["official-artwork"]
-            .front_default,
-      }));
+      if (props.itsShine === false) {
+        setPokemonsImage((prevState) => ({
+          ...prevState,
+          firstPoke:
+            pokemonsData.firstPoke.sprites.other["official-artwork"]
+              .front_default,
+        }));
+      } else {
+        setPokemonsImage((prevState) => ({
+          ...prevState,
+          firstPoke:
+            pokemonsData.firstPoke.sprites.other["official-artwork"]
+              .front_shiny,
+        }));
+      }
       if (Object.keys(pokemonsData.firstPoke.types).length === 1) {
         setPokemonsType((prevState) => ({
           ...prevState,
@@ -116,12 +133,21 @@ export default function GetPokemonChainImage(props) {
     }
 
     if (Object.keys(pokemonsData.secondPoke).length !== 0) {
-      setPokemonsImage((prevState) => ({
-        ...prevState,
-        secondPoke:
-          pokemonsData.secondPoke.sprites.other["official-artwork"]
-            .front_default,
-      }));
+      if (props.itsShine === false) {
+        setPokemonsImage((prevState) => ({
+          ...prevState,
+          secondPoke:
+            pokemonsData.secondPoke.sprites.other["official-artwork"]
+              .front_default,
+        }));
+      } else {
+        setPokemonsImage((prevState) => ({
+          ...prevState,
+          secondPoke:
+            pokemonsData.secondPoke.sprites.other["official-artwork"]
+              .front_shiny,
+        }));
+      }
       if (Object.keys(pokemonsData.secondPoke.types).length === 1) {
         setPokemonsType((prevState) => ({
           ...prevState,
@@ -138,12 +164,21 @@ export default function GetPokemonChainImage(props) {
     }
 
     if (Object.keys(pokemonsData.thirdPoke).length !== 0) {
-      setPokemonsImage((prevState) => ({
-        ...prevState,
-        thirdPoke:
-          pokemonsData.thirdPoke.sprites.other["official-artwork"]
-            .front_default,
-      }));
+      if (props.itsShine === false) {
+        setPokemonsImage((prevState) => ({
+          ...prevState,
+          thirdPoke:
+            pokemonsData.thirdPoke.sprites.other["official-artwork"]
+              .front_default,
+        }));
+      } else {
+        setPokemonsImage((prevState) => ({
+          ...prevState,
+          thirdPoke:
+            pokemonsData.thirdPoke.sprites.other["official-artwork"]
+              .front_shiny,
+        }));
+      }
       if (Object.keys(pokemonsData.thirdPoke.types).length === 1) {
         setPokemonsType((prevState) => ({
           ...prevState,
@@ -158,7 +193,7 @@ export default function GetPokemonChainImage(props) {
         }));
       }
     }
-  }, [pokemonsData]);
+  }, [pokemonsData, props.itsShine]);
 
   const pickTypeIcon = (wich) => {
     if (wich === "firstPoke") {
@@ -231,6 +266,13 @@ export default function GetPokemonChainImage(props) {
                 className="imagem_pokemon_evolução"
               />
             </div>
+            {Object.keys(pokemonsData.secondPoke).length >= 2 && (
+              <img
+                src={iconeTroca}
+                alt="Icone para troca de evol."
+                className="icone_troca_evolução"
+              />
+            )}
           </>
         )}
         {pokemonsImage.thirdPoke && (

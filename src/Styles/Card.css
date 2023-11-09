@@ -2,6 +2,8 @@
 @import url("https://fonts.cdnfonts.com/css/pokemon-hollow");
 @import url("https://fonts.cdnfonts.com/css/bionic-comic");
 @import url("https://fonts.cdnfonts.com/css/adventure-subtitles-2");
+@import url('https://fonts.cdnfonts.com/css/chloreal');
+@import url("./KeyFrames.css");
 
 .container_carta {
   display: flex;
@@ -10,7 +12,7 @@
   position: absolute;
   left: 50%;
   width: 100%;
-  top: 60%;
+  top: 600px;
   transform: translate(-50%, -50%);
 }
 
@@ -26,6 +28,10 @@
   cursor: pointer;
   transition: transform 0.5s;
   transform-style: preserve-3d;
+}
+
+.carta_shine {
+  animation: colorBorderMove 8s infinite ease-in-out;
 }
 
 .carta:hover {
@@ -231,6 +237,7 @@
 }
 
 .container_imagem_carta {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -352,6 +359,50 @@
   border: 2px solid black;
   border-radius: 10px;
   padding: 5px;
+}
+
+.container_body_shiny {
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao_shine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 3px solid black;
+  border-radius: 10px;
+  background: rgb(131, 58, 180);
+  animation: backgroundMove 10s infinite ease-in-out;
+  cursor: pointer;
+}
+
+.botao_normal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 3px solid black;
+  border-radius: 10px;
+  background: rgb(188, 188, 188);
+  cursor: pointer;
+}
+
+.icone_shine_imagem {
+  font-family: 'Chloreal', sans-serif;
+  position: absolute;
+  letter-spacing: 0.2vw;
+  top: 5%;
+  left: 5%;
+  color: aqua;
+  font-size: 1vw;
+  animation: colorFontMove 7s infinite ease-in-out;
 }
 
 @media only screen and (max-width: 900px) {

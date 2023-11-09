@@ -1,5 +1,12 @@
 @import url("https://fonts.cdnfonts.com/css/pokemon-hollow");
 
+.container_imagens {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
 .botao_card {
   display: flex;
   align-items: center;
@@ -32,6 +39,12 @@
   position: absolute;
   top: 50vh;
   left: 50vw;
+}
+
+.icone_troca_evolução {
+  width: 8%;
+  cursor: context-menu;
+  position: absolute;
 }
 
 @media only screen and (max-width: 900px) {

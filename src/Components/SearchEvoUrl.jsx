@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 export default function SearchEvoUrl(props) {
   SearchEvoUrl.propTypes = {
     pokemonSpecies: PropTypes.object.isRequired,
+    itsShine: PropTypes.bool.isRequired
   };
 
   const urlEvoChain = props.pokemonSpecies.evolution_chain;
@@ -98,7 +99,7 @@ export default function SearchEvoUrl(props) {
             }));
           }
         } catch (error) {
-          console.log("Oops! Ocorreu um erro: " + error);
+          console.error("Oops! Ocorreu um erro: " + error);
         }
       };
 
@@ -106,5 +107,5 @@ export default function SearchEvoUrl(props) {
     }
   }, [pickPokemonUrl]);
   
-  return <GetPokemonChainImage pokemonData={pickPokemonData} />;
+  return <GetPokemonChainImage pokemonData={pickPokemonData} itsShine={props.itsShine} />;
 }
