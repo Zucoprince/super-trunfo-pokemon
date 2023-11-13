@@ -9,289 +9,196 @@ import iconeTroca from "../Images/troca.png";
 export default function GetPokemonChainImage(props) {
   GetPokemonChainImage.propTypes = {
     pokemonData: PropTypes.object.isRequired,
-    itsShine: PropTypes.bool.isRequired,
+    itsShiny: PropTypes.bool.isRequired,
   };
 
-  const pokemonsSpecieData = props.pokemonData;
-  const [pokemonsId, setPokemonsId] = useState({
-    firstPoke: null,
-    secondPoke: null,
-    thirdPoke: null,
-  });
-  const [pokemonsData, setPokemonsData] = useState({
-    firstPoke: {},
-    secondPoke: {},
-    thirdPoke: {},
-  });
-  const [pokemonsImage, setPokemonsImage] = useState({
-    firstPoke: "",
-    secondPoke: "",
-    thirdPoke: "",
-  });
-  const [pokemonsType, setPokemonsType] = useState({
-    firstPokeType1: "",
-    firstPokeType2: "",
-    secondPokeType1: "",
-    secondPokeType2: "",
-    thirdPokeType1: "",
-    thirdPokeType2: "",
-  });
+  const { firstPoke, secondPoke, thirdPoke } = props.pokemonData;
+  const [pokemonsData, setPokemonsData] = useState([]);
+  const [pokemonsImage, setPokemonsImage] = useState([]);
+  const [pokemonsType, setPokemonsType] = useState([]);
+  const [slicerIndex, setSlicerIndex] = useState([0, 1]);
+  const [slicerIndexFix, setSlicerIndexFix] = useState(2);
+  const idsEvos = [
+    43, 44, 45, 60, 61, 62, 79, 80, 106, 107, 133, 134, 135, 136, 182, 186, 196,
+    197, 199, 236, 237, 265, 266, 267, 268, 269, 280, 281, 282, 290, 291, 292,
+    361, 362, 366, 367, 368, 412, 413, 414, 470, 471, 475, 478, 700,
+  ];
 
+  const getTypeIcon = (types) => {
+    return types.map((type) => (
+      <GetTypeIcon key={type.type.name} type={type.type.name} />
+    ));
+  };
 
   useEffect(() => {
-    if (pokemonsSpecieData) {
-      setPokemonsId({
-        firstPoke: pokemonsSpecieData.firstPoke
-          ? pokemonsSpecieData.firstPoke.id
-          : null,
-        secondPoke: pokemonsSpecieData.secondPoke
-          ? pokemonsSpecieData.secondPoke.id
-          : null,
-        thirdPoke: pokemonsSpecieData.thirdPoke
-          ? pokemonsSpecieData.thirdPoke.id
-          : null,
+    const fetchPokemonData = async (pokemon) => {
+      if (pokemon) {
+        try {
+          const response = await api.get(`pokemon/${pokemon.id}`);
+          return response.data;
+        } catch (error) {
+          console.error("Erro ao buscar dados do Pokémon: " + error);
+          return null;
+        }
+      }
+      return null;
+    };
+
+    const fetchData = async () => {
+      const firstPokeData = await fetchPokemonData(firstPoke);
+
+      const secondPokeData = secondPoke
+        ? await Promise.all(secondPoke.map((poke) => fetchPokemonData(poke)))
+        : [];
+
+      const thirdPokeData = thirdPoke
+        ? await Promise.all(thirdPoke.map((poke) => fetchPokemonData(poke)))
+        : [];
+
+      setPokemonsData([firstPokeData, ...secondPokeData, ...thirdPokeData]);
+    };
+
+    fetchData();
+  }, [firstPoke, secondPoke, thirdPoke]);
+
+  useEffect(() => {
+    const wichImage = props.itsShiny ? "front_shiny" : "front_default";
+
+    const processPokemonData = (pokemonData) => {
+      if (pokemonData && Object.keys(pokemonData).length !== 0) {
+        const image =
+          pokemonData.sprites?.other["official-artwork"][wichImage] || {};
+        const types = pokemonData.types || [];
+        return { image, types };
+      }
+      return null;
+    };
+
+    const pokemonImageData = pokemonsData.map((pokemon) =>
+      processPokemonData(pokemon)
+    );
+
+    setPokemonsImage(pokemonImageData);
+  }, [pokemonsData, props.itsShiny]);
+
+  useEffect(() => {
+    const typeData = pokemonsData.map((pokemon) =>
+      pokemon ? pokemon.types : []
+    );
+
+    setPokemonsType(typeData);
+  }, [pokemonsData]);
+
+  const handlePokemonChange = (e) => {
+    e.stopPropagation(); // Impede a propagação do evento para os elementos pais
+    if (slicerIndexFix === 2) {
+      setSlicerIndex(([startIndex, endIndex]) => {
+        const nextEndIndex = endIndex + 1;
+
+        // Se o próximo índice exceder o comprimento máximo, volte ao estado original
+        const newEndIndex =
+          nextEndIndex >= pokemonsImage.length ? 1 : nextEndIndex;
+
+        return [startIndex, newEndIndex];
+      });
+    } else {
+      setSlicerIndex(([startIndex, middleIndex, endIndex]) => {
+        const nextEndIndex = endIndex + 1;
+
+        // Se o próximo índice exceder o comprimento máximo, volte ao estado original
+        const newEndIndex =
+          nextEndIndex >= pokemonsImage.length ? 2 : nextEndIndex;
+
+        return [startIndex, middleIndex, newEndIndex];
       });
     }
-  }, [pokemonsSpecieData]);
-
-  useEffect(() => {
-    if (pokemonsId.firstPoke !== null && pokemonsId.firstPoke !== undefined) {
-      const fetchPokemon = async () => {
-        try {
-          const responseFirstPoke = await api.get(
-            `pokemon/${pokemonsId.firstPoke}`
-          );
-          setPokemonsData((prevState) => ({
-            ...prevState,
-            firstPoke: responseFirstPoke.data,
-          }));
-
-          if (
-            pokemonsId.secondPoke !== null &&
-            pokemonsId.secondPoke !== undefined
-          ) {
-            const responseSecondPoke = await api.get(
-              `pokemon/${pokemonsId.secondPoke}`
-            );
-            setPokemonsData((prevState) => ({
-              ...prevState,
-              secondPoke: responseSecondPoke.data,
-            }));
-          }
-
-          if (
-            pokemonsId.thirdPoke !== null &&
-            pokemonsId.thirdPoke !== undefined
-          ) {
-            const responseThirdPoke = await api.get(
-              `pokemon/${pokemonsId.thirdPoke}`
-            );
-            setPokemonsData((prevState) => ({
-              ...prevState,
-              thirdPoke: responseThirdPoke.data,
-            }));
-          }
-        } catch (error) {
-          console.error("Oops! Ocorreu um erro: " + error);
-        }
-      };
-
-      fetchPokemon();
-    }
-  }, [pokemonsId]);
-
-  useEffect(() => {
-    if (Object.keys(pokemonsData.firstPoke).length !== 0) {
-      if (props.itsShine === false) {
-        setPokemonsImage((prevState) => ({
-          ...prevState,
-          firstPoke:
-            pokemonsData.firstPoke.sprites.other["official-artwork"]
-              .front_default,
-        }));
-      } else {
-        setPokemonsImage((prevState) => ({
-          ...prevState,
-          firstPoke:
-            pokemonsData.firstPoke.sprites.other["official-artwork"]
-              .front_shiny,
-        }));
-      }
-      if (Object.keys(pokemonsData.firstPoke.types).length === 1) {
-        setPokemonsType((prevState) => ({
-          ...prevState,
-          firstPokeType1: pokemonsData.firstPoke.types[0].type.name,
-        }));
-      }
-      if (Object.keys(pokemonsData.firstPoke.types).length === 2) {
-        setPokemonsType((prevState) => ({
-          ...prevState,
-          firstPokeType1: pokemonsData.firstPoke.types[0].type.name,
-          firstPokeType2: pokemonsData.firstPoke.types[1].type.name,
-        }));
-      }
-    }
-
-    if (Object.keys(pokemonsData.secondPoke).length !== 0) {
-      if (props.itsShine === false) {
-        setPokemonsImage((prevState) => ({
-          ...prevState,
-          secondPoke:
-            pokemonsData.secondPoke.sprites.other["official-artwork"]
-              .front_default,
-        }));
-      } else {
-        setPokemonsImage((prevState) => ({
-          ...prevState,
-          secondPoke:
-            pokemonsData.secondPoke.sprites.other["official-artwork"]
-              .front_shiny,
-        }));
-      }
-      if (Object.keys(pokemonsData.secondPoke.types).length === 1) {
-        setPokemonsType((prevState) => ({
-          ...prevState,
-          secondPokeType1: pokemonsData.secondPoke.types[0].type.name,
-        }));
-      }
-      if (Object.keys(pokemonsData.secondPoke.types).length === 2) {
-        setPokemonsType((prevState) => ({
-          ...prevState,
-          secondPokeType1: pokemonsData.secondPoke.types[0].type.name,
-          secondPokeType2: pokemonsData.secondPoke.types[1].type.name,
-        }));
-      }
-    }
-
-    if (Object.keys(pokemonsData.thirdPoke).length !== 0) {
-      if (props.itsShine === false) {
-        setPokemonsImage((prevState) => ({
-          ...prevState,
-          thirdPoke:
-            pokemonsData.thirdPoke.sprites.other["official-artwork"]
-              .front_default,
-        }));
-      } else {
-        setPokemonsImage((prevState) => ({
-          ...prevState,
-          thirdPoke:
-            pokemonsData.thirdPoke.sprites.other["official-artwork"]
-              .front_shiny,
-        }));
-      }
-      if (Object.keys(pokemonsData.thirdPoke.types).length === 1) {
-        setPokemonsType((prevState) => ({
-          ...prevState,
-          thirdPokeType1: pokemonsData.thirdPoke.types[0].type.name,
-        }));
-      }
-      if (Object.keys(pokemonsData.thirdPoke.types).length === 2) {
-        setPokemonsType((prevState) => ({
-          ...prevState,
-          thirdPokeType1: pokemonsData.thirdPoke.types[0].type.name,
-          thirdPokeType2: pokemonsData.thirdPoke.types[1].type.name,
-        }));
-      }
-    }
-  }, [pokemonsData, props.itsShine]);
-
-  const pickTypeIcon = (wich) => {
-    if (wich === "firstPoke") {
-      if (pokemonsType.firstPokeType2) {
-        return (
-          <div className="container_icones">
-            <GetTypeIcon type={pokemonsType.firstPokeType1} />
-            <GetTypeIcon type={pokemonsType.firstPokeType2} />
-          </div>
-        );
-      } else {
-        return <GetTypeIcon type={pokemonsType.firstPokeType1} />;
-      }
-    }
-
-    if (wich === "secondPoke") {
-      if (pokemonsType.secondPokeType2) {
-        return (
-          <div className="container_icones">
-            <GetTypeIcon type={pokemonsType.secondPokeType1} />
-            <GetTypeIcon type={pokemonsType.secondPokeType2} />
-          </div>
-        );
-      } else {
-        return <GetTypeIcon type={pokemonsType.secondPokeType1} />;
-      }
-    }
-
-    if (wich === "thirdPoke") {
-      if (pokemonsType.thirdPokeType2) {
-        return (
-          <div className="container_icones">
-            <GetTypeIcon type={pokemonsType.thirdPokeType1} />
-            <GetTypeIcon type={pokemonsType.thirdPokeType2} />
-          </div>
-        );
-      } else {
-        return <GetTypeIcon type={pokemonsType.thirdPokeType1} />;
-      }
-    }
   };
 
+  const seeIdEvos = (id) => {
+    return idsEvos.includes(id);
+  };
+
+  useEffect(() => {
+    const slicers = () => {
+      const requiredIds = [
+        43, 44, 45, 60, 61, 62, 182, 186, 280, 281, 282, 475,
+      ];
+
+      const hasAllRequiredIds = pokemonsData.every(
+        (pokemon) => pokemon && pokemon.id && requiredIds.includes(pokemon.id)
+      );
+
+      if (hasAllRequiredIds) {
+        setSlicerIndexFix(3);
+        setSlicerIndex([0, 1, 2]);
+      } else {
+        setSlicerIndexFix(2);
+        setSlicerIndex([0, 1]);
+      }
+    };
+
+    slicers();
+  }, [pokemonsData]);
+
   const renderImage = () => {
+    const showArrow =
+      pokemonsData &&
+      pokemonsData.some(
+        (pokemon) => pokemon && pokemon.id && seeIdEvos(pokemon.id)
+      );
+
     return (
-      <div className="container_imagens">
-        {pokemonsImage.firstPoke && (
-          <div className="container_primeiro_pokemon">
-            <h3 className="nome_poke_primeiro">
-              {pokemonsData.firstPoke.name}
-            </h3>
-            {pickTypeIcon("firstPoke")}
-            <img
-              src={pokemonsImage.firstPoke}
-              alt={`Imagem de ${pokemonsData.firstPoke.name}`}
-              className="imagem_pokemon_evolução"
-            />
+      <>
+        {showArrow === false && (
+          <div className="container_imagens">
+            {pokemonsImage.map((imageData, index) => (
+              <div key={index} className="container_pokemon">
+                <h3 className="nome_poke">{pokemonsData[index]?.name}</h3>
+                <div className="container_type">
+                  {getTypeIcon(pokemonsType[index])}
+                </div>
+                <img
+                  src={imageData?.image}
+                  alt={`Imagem de ${pokemonsData[index]?.name}`}
+                  className="imagem_pokemon_evolução"
+                />
+              </div>
+            ))}
           </div>
         )}
-        {pokemonsImage.secondPoke && (
+        {showArrow && (
           <>
-            <img src={Seta} alt="Seta" className="imagem_seta" />
-            <div className="container_segundo_pokemon">
-              <h3 className="nome_poke_segundo">
-                {pokemonsData.secondPoke.name}
-              </h3>
-              {pickTypeIcon("secondPoke")}
-              <img
-                src={pokemonsImage.secondPoke}
-                alt={`Imagem de ${pokemonsData.secondPoke.name}`}
-                className="imagem_pokemon_evolução"
-              />
+            <div className="container_imagens">
+              {pokemonsImage
+                .filter((element, index) => slicerIndex.includes(index))
+                .map((imageData, index) => {
+                  const originalIndex = slicerIndex[index];
+                  return (
+                    <div key={index} className="container_pokemon">
+                      <h3 className="nome_poke">
+                        {pokemonsData[originalIndex]?.name}
+                      </h3>
+                      <div className="container_type">
+                        {getTypeIcon(pokemonsType[originalIndex])}
+                      </div>
+                      <img
+                        src={imageData?.image}
+                        alt={`Imagem de ${pokemonsData[originalIndex]?.name}`}
+                        className="imagem_pokemon_evolução"
+                      />
+                    </div>
+                  );
+                })}
             </div>
-            {Object.keys(pokemonsData.secondPoke).length >= 2 && (
-              <img
-                src={iconeTroca}
-                alt="Icone para troca de evol."
-                className="icone_troca_evolução"
-              />
-            )}
+            <img
+              src={iconeTroca}
+              alt="Trocar Pokémon"
+              className="icone_troca"
+              onClick={(e) => handlePokemonChange(e)}
+            />
           </>
         )}
-        {pokemonsImage.thirdPoke && (
-          <>
-            <img src={Seta} alt="Seta" className="imagem_seta" />
-            <div className="container_terceiro_pokemon">
-              <h3 className="nome_poke_terceiro">
-                {pokemonsData.thirdPoke.name}
-              </h3>
-              {pickTypeIcon("thirdPoke")}
-              <img
-                src={pokemonsImage.thirdPoke}
-                alt={`Imagem de ${pokemonsData.thirdPoke.name}`}
-                className="imagem_pokemon_evolução"
-              />
-            </div>
-          </>
-        )}
-      </div>
+      </>
     );
   };
 

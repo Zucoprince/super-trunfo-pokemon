@@ -2,7 +2,7 @@
 @import url("https://fonts.cdnfonts.com/css/pokemon-hollow");
 @import url("https://fonts.cdnfonts.com/css/bionic-comic");
 @import url("https://fonts.cdnfonts.com/css/adventure-subtitles-2");
-@import url('https://fonts.cdnfonts.com/css/chloreal');
+@import url("https://fonts.cdnfonts.com/css/chloreal");
 @import url("./KeyFrames.css");
 
 .container_carta {
@@ -30,7 +30,7 @@
   transform-style: preserve-3d;
 }
 
-.carta_shine {
+.carta_shiny {
   animation: colorBorderMove 8s infinite ease-in-out;
 }
 
@@ -371,7 +371,7 @@
   justify-content: center;
 }
 
-.botao_shine {
+.botao_shiny {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -394,8 +394,8 @@
   cursor: pointer;
 }
 
-.icone_shine_imagem {
-  font-family: 'Chloreal', sans-serif;
+.icone_shiny_imagem {
+  font-family: "Chloreal", sans-serif;
   position: absolute;
   letter-spacing: 0.2vw;
   top: 5%;
@@ -406,6 +406,10 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .container_carta {
+    top: 420px;
+  }
+
   .carta {
     width: 60vw;
     height: 90vw;

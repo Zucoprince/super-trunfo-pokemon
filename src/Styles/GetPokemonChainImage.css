@@ -15,9 +15,7 @@
   width: 5%;
 }
 
-.container_primeiro_pokemon,
-.container_segundo_pokemon,
-.container_terceiro_pokemon {
+.container_pokemon {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,18 +25,19 @@
   overflow: hidden;
 }
 
-.nome_poke_primeiro,
-.nome_poke_segundo,
-.nome_poke_terceiro {
+.nome_poke {
   font-size: 1vw;
   margin-bottom: 0.2%;
   margin-top: 0.1%;
 }
 
+.icone_troca {
+  cursor: pointer;
+  width: 12%;
+}
+
 @media only screen and (max-width: 900px) {
-  .nome_poke_primeiro,
-  .nome_poke_segundo,
-  .nome_poke_terceiro {
+  .nome_poke {
     font-size: 2.3vw;
   }
 }

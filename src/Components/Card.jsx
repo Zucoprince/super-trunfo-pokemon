@@ -11,7 +11,6 @@ import PropTypes from "prop-types";
 import GetGen from "./GetGen";
 import TranslatedDescription from "./TranslatedDescription";
 import GetMainImage from "./GetMainImage";
-import shine from "../Images/shine.png";
 
 export default function Card({
   randomPokemon,
@@ -26,8 +25,8 @@ export default function Card({
 
   const [firstType, setFirstType] = useState("");
   const [secondType, setSecondType] = useState("");
-  const [itsShine, setItsShine] = useState(false);
-  const imagem = GetMainImage(randomPokemon, itsShine);
+  const [itsShiny, setItsShiny] = useState(false);
+  const imagem = GetMainImage(randomPokemon, itsShiny);
   const stats = getStats(randomPokemon);
   const firstStats = stats.slice(0, Math.ceil(stats.length / 2));
   const secondStats = stats.slice(Math.ceil(stats.length / 2), stats.length);
@@ -39,7 +38,7 @@ export default function Card({
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [getGen, setGetGen] = useState("");
   const pokemonsDescriptions = TranslatedDescription(randomPokemon);
-  const [buttonShineContent, setButtonShineContent] = useState("Ver Shine!");
+  const [buttonShinyContent, setButtonShinyContent] = useState("Ver Shiny!");
 
   const virarCarta = () => {
     setVirada(!virada);
@@ -109,13 +108,13 @@ export default function Card({
   };
 
   const onItsShiny = () => {
-    setItsShine(!itsShine);
+    setItsShiny(!itsShiny);
 
-    if (itsShine === true) {
-      setButtonShineContent("Ver Shine!");
+    if (itsShiny === true) {
+      setButtonShinyContent("Ver Shiny!");
     }
-    if (itsShine === false) {
-      setButtonShineContent("Ver Padrão");
+    if (itsShiny === false) {
+      setButtonShinyContent("Ver Padrão");
     }
   };
 
@@ -125,13 +124,13 @@ export default function Card({
         <div className="container_botao_shiny">
           <button
             className={
-              buttonShineContent === "Ver Shine!"
-                ? "botao_shine"
+              buttonShinyContent === "Ver Shiny!"
+                ? "botao_shiny"
                 : "botao_normal"
             }
             onClick={onItsShiny}
           >
-            {buttonShineContent}
+            {buttonShinyContent}
           </button>
         </div>
       </div>
@@ -139,7 +138,7 @@ export default function Card({
         {!virada && (
           <div
             className={`carta ${firstType}_carta ${
-              itsShine === true && "carta_shine"
+              itsShiny === true && "carta_shiny"
             }`}
             onClick={virarCarta}
             onKeyDown={(event) => {
@@ -171,10 +170,10 @@ export default function Card({
               </div>
             </div>
             <div className="container_imagem_carta">
-              {itsShine === true && (
-                // <img src={shine} alt="Icone Shine" className="icone_shine_imagem"/>
-                <h1 alt="Icone Shine" className="icone_shine_imagem">
-                  SHINE!
+              {itsShiny === true && (
+                // <img src={shiny} alt="Icone Shiny" className="icone_shiny_imagem"/>
+                <h1 alt="Icone Shiny" className="icone_shiny_imagem">
+                  SHINY!
                 </h1>
               )}
               <img
@@ -219,7 +218,7 @@ export default function Card({
         {virada && (
           <div
             className={`carta ${firstType}_carta ${
-              itsShine === true && "carta_shine"
+              itsShiny === true && "carta_shiny"
             }`}
             onClick={virarCarta}
             onKeyDown={(event) => {
@@ -269,7 +268,10 @@ export default function Card({
                 <TypeAverageIcons combinedTypeAverages={combinedTypeAverages} />
               </div>
               <div className="container_arvore_evolutiva_virado">
-                <SearchEvoUrl pokemonSpecies={pokemonSpecies} itsShine={itsShine} />
+                <SearchEvoUrl
+                  pokemonSpecies={pokemonSpecies}
+                  itsShiny={itsShiny}
+                />
               </div>
             </div>
           </div>

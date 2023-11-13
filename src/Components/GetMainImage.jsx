@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-export default function GetMainImage(props, itsShine) {
+export default function GetMainImage(props, itsShiny) {
   const [mainImage, setMainImage] = useState("");
   const [viradaImageFront, setViradaImageFront] = useState("");
   const [viradaImageBack, setViradaImageBack] = useState("");
 
   useEffect(() => {
-    if (itsShine === true) {
+    if (itsShiny === true) {
       setMainImage(props.sprites.other["official-artwork"].front_shiny);
       setViradaImageFront(props.sprites.front_shiny);
       setViradaImageBack(props.sprites.back_shiny);
@@ -15,7 +15,7 @@ export default function GetMainImage(props, itsShine) {
       setViradaImageFront(props.sprites.front_default);
       setViradaImageBack(props.sprites.back_default);
     }
-  }, [props, itsShine]);
+  }, [props, itsShiny]);
 
   return {
     mainImage: mainImage,
