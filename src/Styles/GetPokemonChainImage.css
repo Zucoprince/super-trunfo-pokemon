@@ -1,5 +1,6 @@
 .container_imagens {
   display: flex;
+  position: relative;
   justify-content: space-around;
   align-items: center;
   width: 100%;
@@ -13,6 +14,30 @@
 
 .imagem_seta {
   width: 5%;
+}
+
+.imagem_seta_2 {
+  width: 5%;
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.imagem_seta_3 {
+  width: 5%;
+  position: absolute;
+  left: 34%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+}
+
+.imagem_seta_4 {
+  width: 5%;
+  position: absolute;
+  left: 68%;
+  top: 60%;
+  transform: translate(-50%, -50%);
 }
 
 .container_pokemon {
@@ -36,8 +61,22 @@
   width: 12%;
 }
 
+.icone_pokebola {
+  width: 15%;
+  animation: rotate infinite 0.6s ease-in-out;
+}
+
 @media only screen and (max-width: 900px) {
   .nome_poke {
     font-size: 2.3vw;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

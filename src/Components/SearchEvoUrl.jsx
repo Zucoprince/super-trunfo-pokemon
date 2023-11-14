@@ -136,9 +136,12 @@ export default function SearchEvoUrl(props) {
               thirdPoke: thirdPokeData,
             }));
           }
+
+          
         });
     }
-  }, [pickPokemonUrl]);
+
+  }, [pickPokemonUrl, props]);
 
   return (
     <GetPokemonChainImage

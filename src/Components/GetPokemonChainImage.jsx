@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import Seta from "../Images/seta-direita.png";
 import GetTypeIcon from "./GetTypeIcon";
 import iconeTroca from "../Images/troca.png";
+import iconePokebola from "../Images/icone_pokebola.png";
 
 export default function GetPokemonChainImage(props) {
   GetPokemonChainImage.propTypes = {
@@ -18,6 +19,7 @@ export default function GetPokemonChainImage(props) {
   const [pokemonsType, setPokemonsType] = useState([]);
   const [slicerIndex, setSlicerIndex] = useState([0, 1]);
   const [slicerIndexFix, setSlicerIndexFix] = useState(2);
+  const [isLoading, setIsLoading] = useState(true);
   const idsEvos = [
     43, 44, 45, 60, 61, 62, 79, 80, 106, 107, 133, 134, 135, 136, 182, 186, 196,
     197, 199, 236, 237, 265, 266, 267, 268, 269, 280, 281, 282, 290, 291, 292,
@@ -147,31 +149,53 @@ export default function GetPokemonChainImage(props) {
         (pokemon) => pokemon && pokemon.id && seeIdEvos(pokemon.id)
       );
 
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
     return (
       <>
-        {showArrow === false && (
+        {isLoading && (
+          <div className="sweet_loading">
+            <img
+              src={iconePokebola}
+              alt="Icone Pokebola"
+              className="icone_pokebola"
+            />
+          </div>
+        )}
+        {!showArrow && !isLoading && (
           <div className="container_imagens">
-            {pokemonsImage.map((imageData, index) => (
-              <div key={index} className="container_pokemon">
-                <h3 className="nome_poke">{pokemonsData[index]?.name}</h3>
-                <div className="container_type">
-                  {getTypeIcon(pokemonsType[index])}
+            {pokemonsImage.map((imageData, index, array) => (
+              <>
+                <div key={index} className="container_pokemon">
+                  <h3 className="nome_poke">{pokemonsData[index]?.name}</h3>
+                  <div className="container_type">
+                    {getTypeIcon(pokemonsType[index])}
+                  </div>
+                  <img
+                    src={imageData?.image}
+                    alt={`Imagem de ${pokemonsData[index]?.name}`}
+                    className="imagem_pokemon_evolução"
+                  />
                 </div>
-                <img
-                  src={imageData?.image}
-                  alt={`Imagem de ${pokemonsData[index]?.name}`}
-                  className="imagem_pokemon_evolução"
-                />
-              </div>
+                {index !== array.length - 1 && (
+                  <img
+                    src={Seta}
+                    alt="imagem de seta"
+                    className="imagem_seta"
+                  />
+                )}
+              </>
             ))}
           </div>
         )}
-        {showArrow && (
+        {showArrow && !isLoading && (
           <>
             <div className="container_imagens">
               {pokemonsImage
                 .filter((element, index) => slicerIndex.includes(index))
-                .map((imageData, index) => {
+                .map((imageData, index, array) => {
                   const originalIndex = slicerIndex[index];
                   return (
                     <div key={index} className="container_pokemon">
@@ -186,6 +210,28 @@ export default function GetPokemonChainImage(props) {
                         alt={`Imagem de ${pokemonsData[originalIndex]?.name}`}
                         className="imagem_pokemon_evolução"
                       />
+                      {index !== array.length - 1 &&
+                      slicerIndexFix === 2 ? (
+                        <img
+                          src={Seta}
+                          alt="imagem de seta"
+                          className="imagem_seta_2"
+                        />
+                      ) : (
+                        <>
+                          {" "}
+                          <img
+                            src={Seta}
+                            alt="imagem de seta"
+                            className="imagem_seta_3"
+                          />
+                          <img
+                            src={Seta}
+                            alt="imagem de seta"
+                            className="imagem_seta_4"
+                          />
+                        </>
+                      )}
                     </div>
                   );
                 })}
