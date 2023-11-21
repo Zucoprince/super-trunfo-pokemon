@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import GetGen from "./GetGen";
 import TranslatedDescription from "./TranslatedDescription";
 import GetMainImage from "./GetMainImage";
+import InfoCard from "./InfoCard";
 
 export default function Card({
   randomPokemon,
@@ -37,7 +38,6 @@ export default function Card({
   // eslint-disable-next-line no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [getGen, setGetGen] = useState("");
-  const pokemonsDescriptions = TranslatedDescription(randomPokemon);
   const [buttonShinyContent, setButtonShinyContent] = useState("Ver Shiny!");
 
   const virarCarta = () => {
@@ -135,6 +135,7 @@ export default function Card({
         </div>
       </div>
       <div className="container_carta">
+        <InfoCard randomPokemon={randomPokemon} isShiny={itsShiny}/>
         {!virada && (
           <div
             className={`carta ${firstType}_carta ${
@@ -257,13 +258,6 @@ export default function Card({
                   )}
                 </div>
               </div>
-              <div className="container_descrição_virado">
-                <div className="moldura_descrição_virado">
-                  <span className="descrição_virado">
-                    {pokemonsDescriptions}
-                  </span>
-                </div>
-              </div>
               <div className="container_fraquezas_virado">
                 <TypeAverageIcons combinedTypeAverages={combinedTypeAverages} />
               </div>
@@ -276,6 +270,7 @@ export default function Card({
             </div>
           </div>
         )}
+        <InfoCard randomPokemon={randomPokemon} pokemonImage={imagem} />
       </div>
     </>
   );

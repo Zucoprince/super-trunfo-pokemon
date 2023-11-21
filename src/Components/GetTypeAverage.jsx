@@ -8,6 +8,7 @@ export default function GetTypeAverage(props) {
     double_damage_to: [],
     half_damage_to: [],
     no_damage_to: [],
+    types: [],
   });
 
   useEffect(() => {
@@ -31,7 +32,6 @@ export default function GetTypeAverage(props) {
         }));
       });
 
-
       props.damage_relations.double_damage_to?.forEach((item) => {
         setDamageRelations((prevRelations) => ({
           ...prevRelations,
@@ -52,8 +52,13 @@ export default function GetTypeAverage(props) {
       });
     }
 
-    
-  }, [props.damage_relations]);
+    if (props && props.name) {
+      setDamageRelations((prevRelations) => ({
+        ...prevRelations,
+        types: [props.name],
+      }));
+    }
+  }, [props]);
 
-  return damageRelations ;
+  return damageRelations;
 }

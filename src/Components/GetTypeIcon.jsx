@@ -40,8 +40,13 @@ export default function GetTypeIcon(props) {
   };
   const icon = typeIcons[props.type];
 
+  const iconStyle = {
+    width: props.size,
+    // Outros estilos conforme necessário
+  };
+
   if (icon) {
-    return <img src={icon} alt={`icone do tipo ${props}`} style={{ width: "12%"}} />;
+    return <img src={icon} alt={`icone do tipo ${props}`} style={iconStyle} />;
   } else {
     return null; // Ou qualquer outra ação padrão desejada
   }
