@@ -4,8 +4,8 @@
   align-items: center;
   justify-content: space-evenly;
   position: relative;
-  gap: 10%;
-  width: 23%;
+  gap: 1rem;
+  width: 29%;
   min-height: 25%;
   border: 2px black solid;
 }
@@ -19,6 +19,7 @@
 
 .container_effectiviness_icon img {
   width: 30%;
+  margin-bottom: 19%;
 }
 
 .container_effectiviness_title {
@@ -28,7 +29,7 @@
   font-weight: 1000;
   height: 100%;
   width: 100%;
-  margin-top: 2%;
+  margin-top: 19%;
 }
 
 .container_half_from {
