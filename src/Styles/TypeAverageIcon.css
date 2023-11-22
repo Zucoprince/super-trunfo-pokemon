@@ -5,7 +5,7 @@
   justify-content: space-evenly;
   position: relative;
   gap: 1rem;
-  width: 29%;
+  width: 28%;
   min-height: 25%;
   border: 2px black solid;
 }
@@ -17,8 +17,8 @@
   flex-wrap: wrap;
 }
 
-.container_effectiviness_icon img {
-  width: 30%;
+.container_icones {
+  width: 100%;
   margin-bottom: 19%;
 }
 

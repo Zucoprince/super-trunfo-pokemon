@@ -19,12 +19,24 @@ export default function GetPokemon() {
 
   const fetchPokemonByName = async (pokemonName) => {
     try {
-      const response = await api.get(`pokemon/${pokemonName.toLowerCase()}`); // Fazendo uma solicitação para obter todos os dados do Pokémon
-      setRandomPokemon(response.data);
-      setTimeout(() => {
-        setIsLoading(false);
-        setImageLoaded(true);
-      }, imageLoaded === true);
+      if (typeof pokemonName === "string") {
+        const response = await api.get(`pokemon/${pokemonName.toLowerCase()}`);
+
+        setRandomPokemon(response.data);
+        setTimeout(() => {
+          setIsLoading(false);
+          setImageLoaded(true);
+        }, imageLoaded === true);
+      }
+      if (typeof pokemonName === "number") {
+        const response = await api.get(`pokemon/${pokemonName}`);
+
+        setRandomPokemon(response.data);
+        setTimeout(() => {
+          setIsLoading(false);
+          setImageLoaded(true);
+        }, imageLoaded === true);
+      } // Fazendo uma solicitação para obter todos os dados do Pokémon
     } catch (error) {
       console.error("Oops! Ocorreu um erro: " + error);
       setTimeout(() => {
@@ -65,14 +77,31 @@ export default function GetPokemon() {
   };
 
   const handleSearchInputChange = (e) => {
-    const userInput = e.target.value.toLowerCase();
-    const filteredResults = names.pokemon_v2_pokemon.filter((item) =>
-      item.name.includes(userInput)
-    );
-    setFilteredNames(filteredResults);
-    setSearchInput(userInput);
-    setShowSuggestions(true);
-    if (e.target.value === "") {
+    const userInput = e.target.value;
+
+    if (userInput.trim() !== "") {
+      let filteredResults;
+
+      if (!isNaN(userInput)) {
+        // Se a entrada for um número
+        filteredResults = names.filter((item) =>
+          item.id.toString().includes(userInput)
+        );
+      } else {
+        // Se a entrada for uma string
+        const lowercasedInput = userInput.toLowerCase();
+        filteredResults = names.filter((item) =>
+          item.name.toLowerCase().includes(lowercasedInput)
+        );
+      }
+
+      setFilteredNames(filteredResults);
+      setSearchInput(userInput);
+      setShowSuggestions(true);
+    } else {
+      // Limpar os resultados filtrados e ocultar as sugestões se a entrada estiver vazia
+      setFilteredNames([]);
+      setSearchInput("");
       setShowSuggestions(false);
     }
   };

@@ -1,11 +1,40 @@
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(47, 47, 47);
+  background-image: url('../src/Images/poke-bg.png');
+  background-size: 100%;
+}
+
+.container_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -100; /* Coloca o elemento de fundo atrás de outros elementos */
+  background-image: url('../src/Images/poke-bg.png');
+  background-size: cover;
+  filter: blur(5px); /* Ajuste o valor conforme desejado para o efeito de desfoque */
+}
+
+.container_background::before,
+.container_background::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 110%;
+  height: 110%;
+  background: rgba(0, 0, 0, 0.249);
+  z-index: -90; /* Garante que a sombra esteja abaixo da imagem */
+  pointer-events: none; /* Permite interação com a imagem subjacente */
+  border-radius: 30px; /* Adiciona cantos arredondados à sombra */
 }
 
 code {

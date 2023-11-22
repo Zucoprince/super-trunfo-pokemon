@@ -39,15 +39,17 @@ export default function TypeAverageIcons(props) {
         <div
           className={`container_effectiviness_icon container_${className}_icon`}
         >
-          {varName &&
-            varName.map((type, index) => (
-              <GetTypeIcon
-                key={index}
-                className={`${type}_icon`}
-                type={type}
-                size="30%"
-              />
-            ))}
+          <div className="container_icones" >
+            {varName &&
+              varName.map((type, index) => (
+                <GetTypeIcon
+                  key={index}
+                  className={`${type}_icon`}
+                  type={type}
+                  size="23%"
+                />
+              ))}
+          </div>
         </div>
       </div>
     );
