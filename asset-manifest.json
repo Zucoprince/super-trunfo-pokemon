@@ -1,9 +1,10 @@
 {
   "files": {
-    "main.css": "/super-trunfo-pokemon/static/css/main.305bf8af.css",
-    "main.js": "/super-trunfo-pokemon/static/js/main.293d66c1.js",
+    "main.css": "/super-trunfo-pokemon/static/css/main.c3ac4462.css",
+    "main.js": "/super-trunfo-pokemon/static/js/main.bc868777.js",
     "static/js/787.9e9f4ffd.chunk.js": "/super-trunfo-pokemon/static/js/787.9e9f4ffd.chunk.js",
     "static/media/water_card.jpg": "/super-trunfo-pokemon/static/media/water_card.94616c3af736113ea720.jpg",
+    "static/media/poke-bg.png": "/super-trunfo-pokemon/static/media/poke-bg.ce89ca970f5990925e58.png",
     "static/media/bug_card.jpg": "/super-trunfo-pokemon/static/media/bug_card.714957710cf0c2c6c015.jpg",
     "static/media/dark_card.jpg": "/super-trunfo-pokemon/static/media/dark_card.66894eb313aa54608da5.jpg",
     "static/media/dragon_card.jpg": "/super-trunfo-pokemon/static/media/dragon_card.e181d05fb437e0785a18.jpg",
@@ -25,12 +26,12 @@
     "static/media/ground_card.jpeg": "/super-trunfo-pokemon/static/media/ground_card.f27bbcb2b0ab32163b03.jpeg",
     "static/media/troca.png": "/super-trunfo-pokemon/static/media/troca.e99a44bfa5c6a1657fb0.png",
     "index.html": "/super-trunfo-pokemon/index.html",
-    "main.305bf8af.css.map": "/super-trunfo-pokemon/static/css/main.305bf8af.css.map",
-    "main.293d66c1.js.map": "/super-trunfo-pokemon/static/js/main.293d66c1.js.map",
+    "main.c3ac4462.css.map": "/super-trunfo-pokemon/static/css/main.c3ac4462.css.map",
+    "main.bc868777.js.map": "/super-trunfo-pokemon/static/js/main.bc868777.js.map",
     "787.9e9f4ffd.chunk.js.map": "/super-trunfo-pokemon/static/js/787.9e9f4ffd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.305bf8af.css",
-    "static/js/main.293d66c1.js"
+    "static/css/main.c3ac4462.css",
+    "static/js/main.bc868777.js"
   ]
 }
