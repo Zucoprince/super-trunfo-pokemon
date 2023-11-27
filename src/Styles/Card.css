@@ -252,6 +252,20 @@
   max-width: 100%;
 }
 
+.clique_carta {
+  position: absolute;
+  width: 13%;
+  top: 10%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  animation: clickOn 1s infinite ease-in-out;
+}
+
+.clique_carta_zero {
+  position: absolute;
+  opacity: 0;
+}
+
 .conteudo_carta {
   display: flex;
   align-items: center;

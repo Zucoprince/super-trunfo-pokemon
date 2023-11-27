@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import "../Styles/Card.css";
 import "../Styles/CardTypeColors.css";
 import "../Styles/CardVirado.css";
+import clique from "../Images/clique.png";
 import { getStats, soma } from "./GetStats";
-import { apiSpecies } from "../services/api";
 import SearchTypeUrl from "./SearchTypeUrl";
 import TypeAverageIcons from "./TypeAverageIcon";
 import SearchEvoUrl from "./SearchEvoUrl";
 import PropTypes from "prop-types";
 import GetGen from "./GetGen";
-import TranslatedDescription from "./TranslatedDescription";
 import GetMainImage from "./GetMainImage";
 import InfoCard from "./InfoCard";
+import GetPokeSpecies from "./GetPokeSpecies";
 
 export default function Card({
   randomPokemon,
@@ -33,34 +33,20 @@ export default function Card({
   const secondStats = stats.slice(Math.ceil(stats.length / 2), stats.length);
   const somaStats = soma(randomPokemon);
   const [virada, setVirada] = useState(false);
-  const [pokemonSpecies, setPokemonSpecies] = useState([]);
+  const pokemonSpecies = GetPokeSpecies(randomPokemon);
   const combinedTypeAverages = SearchTypeUrl(randomPokemon);
   // eslint-disable-next-line no-unused-vars
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [getGen, setGetGen] = useState("");
   const [buttonShinyContent, setButtonShinyContent] = useState("Ver Shiny!");
+  const [cliqueCarta, setClickCarta] = useState("clique_carta");
 
   const virarCarta = () => {
     setVirada(!virada);
+    setClickCarta("clique_carta_zero");
   };
 
   useEffect(() => {
-    const fetchPokemonSpecies = async () => {
-      try {
-        if (randomPokemon.id < 1010) {
-          const response = await apiSpecies.get(`${randomPokemon.id}`);
-          setPokemonSpecies(response.data);
-        } else {
-          const response = await apiSpecies.get(
-            `${randomPokemon.name.split("-")[0]}`
-          );
-          setPokemonSpecies(response.data);
-        }
-      } catch (error) {
-        console.error("Oops! Ocorreu um erro: " + error);
-      }
-    };
-    fetchPokemonSpecies();
     setGetGen(GetGen(randomPokemon.id));
 
     if (randomPokemon.types.length === 1) {
@@ -83,7 +69,7 @@ export default function Card({
     );
 
   const classificarRaridade = (somaStats, id) => {
-    if (somaStats <= 150) {
+    if (somaStats <= 350) {
       return "COMUM";
     } else if (somaStats <= 400) {
       return "INCOMUM";
@@ -118,6 +104,10 @@ export default function Card({
     }
   };
 
+  setTimeout(() => {
+    setClickCarta("clique_carta_zero");
+  }, 6000);
+
   return (
     <>
       <div className="container_body_shiny">
@@ -135,7 +125,7 @@ export default function Card({
         </div>
       </div>
       <div className="container_carta">
-        <InfoCard randomPokemon={randomPokemon} isShiny={itsShiny}/>
+        <InfoCard randomPokemon={randomPokemon} isShiny={itsShiny} />
         {!virada && (
           <div
             className={`carta ${firstType}_carta ${
@@ -183,6 +173,11 @@ export default function Card({
                 alt={`imagem do ${randomPokemon.name}`}
                 onLoad={handleImageLoad}
               ></img>
+              <img
+                src={clique}
+                alt="Imagem de um mouse clicando"
+                className={cliqueCarta}
+              />
             </div>
             <div className="conteudo_carta">
               <div className="container_conteudo_carta_esquerdo">

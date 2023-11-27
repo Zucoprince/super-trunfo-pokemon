@@ -130,7 +130,5 @@ export default function SearchTypeUrl(props) {
     type_dois: [typeAverageDois.types],
   };
 
-console.log(combinedTypeAverages);
-
   return combinedTypeAverages;
 }

@@ -81,6 +81,7 @@ export default function GetPokemon() {
 
     if (userInput.trim() !== "") {
       let filteredResults;
+      let filteredImage;
 
       if (!isNaN(userInput)) {
         // Se a entrada for um número
@@ -152,6 +153,7 @@ export default function GetPokemon() {
                         }
                       }}
                     >
+                      <img src={item.front} alt={`Imagem do(a) ${item.name}`} className="imagem_lista" width={"25%"}/>
                       <li key={index} className="nome_lista">
                         {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                       </li>

@@ -40,7 +40,7 @@
 .container_nome {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: 3%;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -50,14 +50,31 @@
 
 .container_lista {
   position: absolute;
-  width: 190px;
+  width: 15%;
   height: 300px;
   top: 470%;
   left: 51.5%;
   transform: translate(-50%, -50%);
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
   overflow: auto;
   z-index: 3;
+  border: 3px solid black;
+  border-radius: 10%;
+}
+
+.container_lista::-webkit-scrollbar {
+  width: 14px;
+}
+
+.container_lista::-webkit-scrollbar-thumb {
+  background-color: #000000; /* Cor da barra de rolagem */
+  border-radius: 3px;
+}
+
+.container_lista::-webkit-scrollbar-track {
+  background-color: #9b9898f3; /* Cor do fundo da barra de rolagem */
+  margin-top: 28px;
+  margin-bottom: 28px;
 }
 
 @media only screen and (max-width: 900px) {

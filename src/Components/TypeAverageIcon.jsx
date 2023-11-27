@@ -17,8 +17,6 @@ export default function TypeAverageIcons(props) {
   const typeUm = props.combinedTypeAverages.type_um;
   const typeDois = props.combinedTypeAverages.type_dois;
 
-  console.log(quadraDamageFrom);
-
   const taiRender = (varName, className, title, bg, type) => {
     const diff = ["double_to", "half_to", "nodmg_to"];
     return (
@@ -39,7 +37,7 @@ export default function TypeAverageIcons(props) {
         <div
           className={`container_effectiviness_icon container_${className}_icon`}
         >
-          <div className="container_icones" >
+          <div className="container_icones">
             {varName &&
               varName.map((type, index) => (
                 <GetTypeIcon
